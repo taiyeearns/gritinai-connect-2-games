@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 const GAME1_ROUNDS = [
   {
     type: 'image',
-    label: 'Zuma Rock, Niger State',
-    subtitle: 'Identify this iconic Nigerian monolith with a natural face contour',
+    label: 'Which natural landmark is shown in this picture?',
+    subtitle: 'Famous Nigerian monolith with a natural human face contour',
     options: ['Zuma Rock, Niger State', 'Olumo Rock, Ogun State', 'Aso Rock, Abuja', 'Riyom Rock, Plateau State'],
     correct: 0,
     timer: 12,
@@ -27,8 +27,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Grand Canyon, USA',
-    subtitle: 'Carved over millions of years by the Colorado River',
+    label: 'Which world-famous canyon is this?',
+    subtitle: 'Immense gorge carved over millions of years by the Colorado River',
     options: ['Bryce Canyon, USA', 'Grand Canyon, USA', 'Antelope Canyon, USA', 'Fish River Canyon, Namibia'],
     correct: 1,
     timer: 10,
@@ -36,8 +36,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Erin Ijesha (Olumirin) Waterfalls, Osun State',
-    subtitle: 'A seven-tiered cascade discovered in 1140 AD',
+    label: 'Identify this spectacular waterfall cascade',
+    subtitle: 'Seven-tiered forest waterfall discovered in 1140 AD',
     options: ['Agbokim Waterfalls, Cross River', 'Gurara Falls, Niger State', 'Erin Ijesha Waterfalls, Osun State', 'Farin Ruwa Falls, Nasarawa'],
     correct: 2,
     timer: 12,
@@ -45,8 +45,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Mount Kilimanjaro, Tanzania',
-    subtitle: 'The highest peak in Africa and highest single free-standing mountain in the world',
+    label: 'What is the name of this iconic African mountain?',
+    subtitle: 'The highest single free-standing mountain in the world',
     options: ['Mount Kenya, Kenya', 'Mount Kilimanjaro, Tanzania', 'Atlas Mountains, Morocco', 'Rwenzori Mountains, Uganda'],
     correct: 1,
     timer: 10,
@@ -54,8 +54,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Obudu Mountain Resort, Cross River State',
-    subtitle: 'Famous highland plateau with rolling clouds and cable car views',
+    label: 'Which famous highland plateau resort is this?',
+    subtitle: 'Renowned highland plateau with rolling clouds and cable car views',
     options: ['Mambilla Plateau, Taraba State', 'Obudu Mountain Resort, Cross River State', 'Jos Plateau, Plateau State', 'Idanre Hills, Ondo State'],
     correct: 1,
     timer: 12,
@@ -63,8 +63,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Victoria Falls, Zambia/Zimbabwe',
-    subtitle: 'Locally known as "The Smoke That Thunders" (Mosi-oa-Tunya)',
+    label: 'Identify this legendary African waterfall',
+    subtitle: 'Locally known as Mosi-oa-Tunya ("The Smoke That Thunders")',
     options: ['Niagara Falls, Canada/USA', 'Iguazu Falls, Argentina/Brazil', 'Victoria Falls, Zambia/Zimbabwe', 'Angel Falls, Venezuela'],
     correct: 2,
     timer: 10,
@@ -72,7 +72,7 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Yankari National Park, Bauchi State',
+    label: 'Which famous national park and spring is this?',
     subtitle: 'Home to the warm Wikki Spring and rich savanna wildlife',
     options: ['Yankari National Park, Bauchi State', 'Kainji Lake National Park, Niger', 'Cross River National Park', 'Okomu National Park, Edo State'],
     correct: 0,
@@ -81,8 +81,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Aurora Borealis (Northern Lights), Iceland',
-    subtitle: 'Atmospheric light dance caused by solar particles colliding with Earth\'s magnetic field',
+    label: 'What natural light phenomenon is captured here?',
+    subtitle: 'Atmospheric light dance caused by solar particles colliding with Earth magnetic field',
     options: ['Aurora Australis, Antarctica', 'Aurora Borealis, Iceland', 'Bioluminescent Bay, Puerto Rico', 'Midnight Sun, Norway'],
     correct: 1,
     timer: 10,
@@ -90,7 +90,7 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Ikogosi Warm and Cold Springs, Ekiti State',
+    label: 'Identify this unique dual-spring geological wonder',
     subtitle: 'Geological phenomenon where warm and cold springs flow side by side',
     options: ['Wikki Warm Spring, Bauchi', 'Ikogosi Warm Springs, Ekiti State', 'Awhum Waterfall & Cave, Enugu', 'Maiyaki Falls, Niger State'],
     correct: 1,
@@ -99,8 +99,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Great Barrier Reef, Australia',
-    subtitle: 'The world\'s largest coral reef system composed of over 2,900 individual reefs',
+    label: 'Which world-famous coral reef system is this?',
+    subtitle: 'The world largest living coral reef structure with over 2,900 individual reefs',
     options: ['Palawan Coral Reef, Philippines', 'Red Sea Coral Reef, Egypt', 'Great Barrier Reef, Australia', 'Belize Barrier Reef, Belize'],
     correct: 2,
     timer: 10,
@@ -108,7 +108,7 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Idanre Hills, Ondo State',
+    label: 'Which ancient historic highland fortress is this?',
     subtitle: 'Ancient highland fortress reached via 682 stone steps',
     options: ['Idanre Hills, Ondo State', 'Doma Hills, Nasarawa', 'Koma Hills, Adamawa', 'Shere Hills, Plateau State'],
     correct: 0,
@@ -117,7 +117,7 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Danakil Depression, Ethiopia',
+    label: 'Identify this extreme geological landscape',
     subtitle: 'One of the hottest, lowest, and most geologically active places on Earth',
     options: ['Death Valley, USA', 'Danakil Depression, Ethiopia', 'Salar de Uyuni, Bolivia', 'Atacama Desert, Chile'],
     correct: 1,
@@ -126,7 +126,7 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Agbokim Waterfalls, Cross River State',
+    label: 'Which multi-stream waterfall cascade is this?',
     subtitle: 'Surrounded by lush tropical rainforest, renowned for its seven spectacular streams',
     options: ['Erin Ijesha Falls, Osun', 'Agbokim Waterfalls, Cross River State', 'Gurara Waterfalls, Niger State', 'Kwa Falls, Cross River State'],
     correct: 1,
@@ -135,8 +135,8 @@ const GAME1_ROUNDS = [
   },
   {
     type: 'image',
-    label: 'Zhangjiajie National Forest Park, China',
-    subtitle: 'Towering sandstone pillars that inspired the floating Hallelujah Mountains in Avatar',
+    label: 'Identify these towering karst sandstone pillars',
+    subtitle: 'Towering pillars that inspired the floating Hallelujah Mountains in Avatar',
     options: ['Huangshan Mountains, China', 'Guilin Karst Hills, China', 'Zhangjiajie National Forest Park, China', 'Halong Bay, Vietnam'],
     correct: 2,
     timer: 10,
