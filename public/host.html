@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Host Broadcaster: GritinAI Connect 2.0</title>
+  <meta name="description" content="Host command center and projector view for GritinAI Connect 2.0 Live Games.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="host-body">
+
+  <div class="host-container">
+    <!-- TOP NAVIGATION & COMMAND BAR -->
+    <header class="host-navbar">
+      <div class="host-brand-lockup">
+        <img class="host-brand-logo" src="/assets/logo-gritin.png" alt="GritinAI">
+        <div class="host-brand-divider"></div>
+        <div class="host-event-title">Connect 2.0: Broadcaster</div>
+      </div>
+
+      <!-- Game Selection Tabs (No Emojis) -->
+      <div class="host-nav-center">
+        <button class="host-game-tab active" data-game="game1" id="tab-game1">
+          <span>Nature Guess</span>
+        </button>
+        <button class="host-game-tab" data-game="game2" id="tab-game2">
+          <span>Tech &amp; AI Quiz</span>
+        </button>
+        <button class="host-game-tab" data-game="game3" id="tab-game3">
+          <span>AI or Human?</span>
+        </button>
+      </div>
+
+      <!-- Live Stats & Action Utilities -->
+      <div class="host-nav-right">
+        <div class="host-live-badge">
+          <span class="live-dot"></span>
+          <span id="host-players-count">0</span> PLAYERS
+        </div>
+        <button class="host-icon-btn" id="host-audio-toggle">Audio: On</button>
+        <button class="host-icon-btn" id="host-fullscreen-btn">Fullscreen</button>
+      </div>
+    </header>
+
+    <!-- SPLIT BROADCAST ARENA -->
+    <main class="host-main-grid">
+      <!-- CENTER / LEFT: MAIN LIVE STAGE -->
+      <section class="host-stage-card" id="host-stage-card">
+        <div>
+          <div class="host-stage-header">
+            <span class="host-stage-tag" id="host-stage-tag">LOBBY ARENA</span>
+            <div class="host-timer-big hidden" id="host-timer-big">12</div>
+          </div>
+
+          <div id="host-stage-content">
+            <!-- Dynamic stage content injected here -->
+          </div>
+        </div>
+
+        <!-- Live Submission Meter -->
+        <div class="host-response-meter hidden" id="host-response-meter">
+          <div class="meter-header">
+            <span>LIVE RESPONSES</span>
+            <span id="host-meter-label">0 / 0 answered</span>
+          </div>
+          <div class="meter-bar-track">
+            <div class="meter-bar-fill" id="host-meter-fill"></div>
+          </div>
+        </div>
+
+        <!-- Host Action Controls Deck -->
+        <div class="host-controls-deck" id="host-controls-deck">
+          <!-- Dynamic control buttons based on phase -->
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: LEADERBOARD & ROSTER -->
+      <aside class="host-sidebar-card">
+        <div class="host-sidebar-tabs">
+          <button class="host-side-tab active" id="tab-show-lb">Leaderboard</button>
+          <button class="host-side-tab" id="tab-show-roster">Player Roster (<span id="host-roster-count">0</span>)</button>
+        </div>
+
+        <!-- Leaderboard List -->
+        <div class="host-leaderboard-list" id="host-lb-list">
+          <div class="empty-state">Scores will appear when the round finishes</div>
+        </div>
+
+        <!-- Collapsible Roster List -->
+        <div class="host-roster-list hidden" id="host-roster-list">
+          <!-- Player chips injected here -->
+        </div>
+      </aside>
+    </main>
+
+    <footer>GritinAI Connect 2.0: Benin City Projector Broadcast View | Shortcuts: [Space] Next/Start, [L] Lobby, [F] Fullscreen, [M] Mute</footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/host.js"></script>
+</body>
+</html>

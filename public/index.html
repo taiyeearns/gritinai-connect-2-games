@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>GritinAI Connect 2.0 - Live Games</title>
+  <meta name="description" content="Official live interactive games for GritinAI Connect 2.0.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- GLOBAL NAV: GRITINAI LOGO TOP LEFT -->
+  <header class="site-nav">
+    <img class="site-nav-logo" src="/assets/logo-gritin.png" alt="GritinAI">
+  </header>
+
+  <!-- =========================================================================
+       1. STRICT 100VH LANDING SCREEN (DIRECTLY ON PAGE - NO CARD DIV BG)
+       ========================================================================= -->
+  <div class="viewport-screen landing-screen" id="welcome-screen">
+    <div class="landing-content">
+      <img class="landing-connect-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
+      <p class="landing-tagline">Icebreakers &amp; Games</p>
+      <button class="btn btn-primary btn-large landing-enter-btn" id="welcome-enter-btn">
+        <span>Enter Arena</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. JOIN / REGISTRATION SCREEN
+       ========================================================================= -->
+  <div class="screen hidden" id="join-screen">
+    <div class="screen-nav">
+      <button class="nav-back-btn" id="join-back-nav">Back to Home</button>
+    </div>
+
+    <div class="card">
+      <div class="join-header">
+        <img class="join-connect-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
+        <h2 class="card-title">Join the Session</h2>
+        <p class="card-subtitle">Enter your name to participate in the live challenges</p>
+      </div>
+
+      <div class="form-group">
+        <label class="input-label" for="name-input">Your Full Name or Alias</label>
+        <input type="text" id="name-input" placeholder="e.g. Osas, Tunde, Amaka" maxlength="24" autocomplete="off" autocorrect="off">
+        <div class="error-text" id="join-error"></div>
+      </div>
+
+      <button class="btn btn-primary btn-large" id="join-submit-btn">
+        <span>Join Arena</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       3. DYNAMIC 3-GAME LOBBY SCREEN
+       ========================================================================= -->
+  <div class="screen hidden" id="lobby-screen">
+    <div class="screen-nav">
+      <button class="nav-back-btn" id="lobby-back-nav">Back to Home</button>
+      <div class="lobby-online-badge">
+        <span class="live-dot"></span>
+        <span id="lobby-player-count">0</span> Players Online
+      </div>
+    </div>
+
+    <div class="card lobby-card">
+      <div class="lobby-user-header">
+        <div class="user-chip">
+          <span class="user-initials" id="lobby-user-initials">GA</span>
+          <span class="user-name" id="lobby-welcome-name">Player</span>
+        </div>
+        <button class="btn-ghost-small" id="lobby-change-name-btn">Change Name</button>
+      </div>
+
+      <h2 class="card-title" style="text-align: left;">Game Lobby</h2>
+      <p class="card-subtitle" style="text-align: left;">The host selects which challenge is currently active. Stand by for the round to begin.</p>
+
+      <div class="games-deck" id="lobby-games-list">
+        <!-- Dynamically rendered from server state -->
+      </div>
+
+      <div class="status-footer">
+        <span class="live-dot"></span>
+        <span id="lobby-status-text">Waiting for host to launch the game...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       4. ROUND ARENA
+       ========================================================================= -->
+  <div class="screen hidden" id="round-screen">
+    <div class="card game-card-container">
+      <div class="round-header-bar">
+        <span class="game-indicator-badge" id="round-game-badge">Challenge</span>
+        <span class="round-counter-badge" id="round-counter-pill">Round 1 of 14</span>
+      </div>
+
+      <div class="timer-wrapper">
+        <div class="timer-circle" id="round-timer-dial">12</div>
+      </div>
+
+      <h2 class="round-question-text" id="round-prompt-text">Where is this place?</h2>
+      <p class="round-context-text" id="round-subtitle-text">Fastest correct answer scores highest</p>
+
+      <!-- Media container: Image, Code, or Quote -->
+      <div class="media-container hidden" id="round-media-container"></div>
+
+      <!-- Choices container -->
+      <div class="options-container" id="round-options-grid"></div>
+
+      <div class="locked-banner hidden" id="round-locked-banner">
+        <span>Answer submitted. Waiting for round timer to complete...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       5. RESULT & LEADERBOARD SCREEN
+       ========================================================================= -->
+  <div class="screen hidden" id="result-screen">
+    <div class="card game-card-container">
+      <!-- Personal feedback card -->
+      <div class="personal-feedback-card hidden" id="personal-feedback-card">
+        <div class="feedback-badge" id="feedback-badge-icon">✓</div>
+        <div class="feedback-details">
+          <div class="feedback-title" id="feedback-headline">+100 PTS</div>
+          <div class="feedback-desc" id="feedback-sub">Answered in 1.4s - Rank 1</div>
+        </div>
+      </div>
+
+      <!-- Explanation insight -->
+      <div class="insight-box hidden" id="round-explanation-box">
+        <div class="insight-label">Context &amp; Insight</div>
+        <div id="round-explanation-text"></div>
+      </div>
+
+      <h2 class="card-title" id="result-screen-title">Leaderboard Standings</h2>
+      <p class="card-subtitle" id="result-screen-subtitle">Top contenders this session</p>
+
+      <div class="leaderboard-deck" id="result-lb-list"></div>
+
+      <div class="status-footer" style="margin-top: 14px;">
+        <span class="live-dot"></span>
+        <span id="result-next-text">Next round begins shortly...</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>GritinAI Connect 2.0 - Live Conference Arena</footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/player.js"></script>
+</body>
+</html>
