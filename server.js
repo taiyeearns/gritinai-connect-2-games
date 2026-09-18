@@ -11,6 +11,14 @@ const io = new Server(server, {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/host', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'host.html'));
+});
+
+app.get('/game', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // ---------------------------------------------------------------------------
 // GAME 1: Nature Guess (14 Curated Rounds)
 // Mix of Nigerian natural wonders and iconic global landmarks
@@ -638,10 +646,11 @@ function finalizeRound(idx) {
     .filter(a => a.choice === round.correct)
     .sort((a, b) => a.answeredAt - b.answeredAt);
 
-  // Award points based on arrival order (100, 90, 80... min 10)
+  // Award points based on arrival order (fastest = 100, reduces by 1 per subsequent correct answer down to 0)
+  // Accommodates up to 100 players on leaderboard (Rank 1 = 100 pts, Rank 2 = 99 pts ... Rank 100 = 1 pt)
   const roundPointsMap = {};
   correctEntries.forEach((entry, rankIdx) => {
-    const points = Math.max(100 - rankIdx * 10, 10);
+    const points = Math.max(100 - rankIdx, 0);
     scores[activeGameId][entry.name] = (scores[activeGameId][entry.name] || 0) + points;
     roundPointsMap[entry.name] = {
       rank: rankIdx + 1,

@@ -103,6 +103,11 @@ function showScreen(screenId) {
     const el = document.getElementById(id);
     if (el) el.classList.toggle('hidden', id !== screenId);
   });
+
+  const siteNav = document.querySelector('.site-nav');
+  if (siteNav) {
+    siteNav.classList.toggle('hidden', screenId === 'welcome-screen');
+  }
 }
 
 function handleRouting() {

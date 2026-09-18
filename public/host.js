@@ -342,7 +342,7 @@ function renderHostLeaderboard(leaderboard) {
     return;
   }
 
-  listLb.innerHTML = lb.slice(0, 10).map((r, i) => {
+  listLb.innerHTML = lb.slice(0, 100).map((r, i) => {
     let topClass = '';
     if (i === 0) topClass = ' top1';
     else if (i === 1) topClass = ' top2';

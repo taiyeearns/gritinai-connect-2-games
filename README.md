@@ -23,9 +23,9 @@ Three games, played with independent leaderboards and winners:
 
 ## Key Features Built & Production-Ready
 
-### 1. WhatsApp-Style Tech & AI Doodle Wallpaper
-- Custom inline SVG doodle pattern (`/assets/doodle-pattern.svg`) featuring clean line art: AI neural brains, gamepads, laptops, trophies, rockets, code brackets, lightning bolts, and robots.
-- Subtle background aesthetic styled strictly within brand tokens.
+### 1. Minimalist & High-Performance UI
+- Crisp solid aesthetics (`#0E0E0C` broadcaster projector theme, `#F4F4F2` player arena theme) with Space Grotesk typography.
+- Clean branding using official GritinAI Connect 2.0 emblems.
 
 ### 2. Strict 100vh / Zero-Scroll Pre-Join Landing Experience
 - Single-viewport screen (`height: 100dvh`, `overflow: hidden`, zero vertical or horizontal scrolling) with live conference badges ("Benin City 2026 · Live Arena"), GritinAI brand lockup, 3-game preview cards, and an instant "Enter the Arena" transition.
@@ -83,9 +83,7 @@ public/
   host.js                — Host client logic, live response gauge, shortcuts
   style.css              — Unified responsive design system & doodle wallpaper
   assets/
-    logo-gritin.png      — GritinAI mark
-    logo-connect.png     — GritinAI Connect 2.0 lockup
-    doodle-pattern.svg   — WhatsApp-style tech & AI vector wallpaper
+    logo-connect.png     — GritinAI Connect 2.0 brand emblem & lockup
 ```
 
 ---

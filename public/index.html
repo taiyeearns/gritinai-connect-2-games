@@ -5,16 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GritinAI Connect 2.0 - Live Games</title>
   <meta name="description" content="Official live interactive games for GritinAI Connect 2.0.">
+  <link rel="icon" type="image/png" href="/assets/logo-connect.png">
+  <link rel="apple-touch-icon" href="/assets/logo-connect.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
-  <!-- GLOBAL NAV: GRITINAI LOGO TOP LEFT -->
+  <!-- GLOBAL NAV: CONNECT LOGO TOP LEFT -->
   <header class="site-nav">
-    <img class="site-nav-logo" src="/assets/logo-gritin.png" alt="GritinAI">
+    <a href="#/" class="site-nav-link" aria-label="GritinAI Connect 2.0 Home">
+      <img class="site-nav-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
+    </a>
   </header>
 
   <!-- =========================================================================
@@ -86,7 +90,6 @@
       </div>
 
       <div class="status-footer">
-        <span class="live-dot"></span>
         <span id="lobby-status-text">Waiting for host to launch the game...</span>
       </div>
     </div>
@@ -147,7 +150,6 @@
       <div class="leaderboard-deck" id="result-lb-list"></div>
 
       <div class="status-footer" style="margin-top: 14px;">
-        <span class="live-dot"></span>
         <span id="result-next-text">Next round begins shortly...</span>
       </div>
     </div>
