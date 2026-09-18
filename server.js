@@ -775,11 +775,16 @@ io.on('connection', (socket) => {
       activeGameId = gameId;
     }
     if (session.phase !== 'lobby' && session.phase !== 'gameEnded') return;
+    // Reset scores for this game so each game is independent and fresh
+    scores[activeGameId] = {};
     startRound(0);
   });
 
   socket.on('host:return-lobby', () => {
-    if (roundTimeoutHandle) clearTimeout(roundTimeoutHandle);
+    if (roundTimeoutHandle) {
+      clearTimeout(roundTimeoutHandle);
+      roundTimeoutHandle = null;
+    }
     session = { phase: 'lobby' };
     currentAnswers = {};
     broadcastSession();
@@ -787,7 +792,10 @@ io.on('connection', (socket) => {
 
   socket.on('host:skip-round', () => {
     if (session.phase !== 'round') return;
-    if (roundTimeoutHandle) clearTimeout(roundTimeoutHandle);
+    if (roundTimeoutHandle) {
+      clearTimeout(roundTimeoutHandle);
+      roundTimeoutHandle = null;
+    }
     finalizeRound(session.roundIndex);
   });
 

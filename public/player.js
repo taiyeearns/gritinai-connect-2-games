@@ -119,11 +119,14 @@ function handleRouting() {
     return;
   }
   if (currentServerPhase === 'roundResult' || currentServerPhase === 'gameEnded') {
+    stopCountdown();
     showScreen('result-screen');
     return;
   }
 
-  // Pre-game phases
+  // Pre-game / Lobby phases: stop countdown immediately
+  stopCountdown();
+
   if (hash === '#/join') {
     showScreen('join-screen');
     setTimeout(() => {
@@ -143,7 +146,11 @@ function handleRouting() {
   }
 
   // Default: welcome / prejoin
-  showScreen('welcome-screen');
+  if (myName && currentServerPhase === 'lobby') {
+    showScreen('lobby-screen');
+  } else {
+    showScreen('welcome-screen');
+  }
 }
 
 window.addEventListener('hashchange', handleRouting);
@@ -263,9 +270,24 @@ socket.on('session:update', (payload) => {
   currentServerPhase = payload.phase;
 
   if (payload.phase === 'lobby') {
+    stopCountdown();
+    currentRound = null;
+    answeredThisRound = false;
+
     renderLobbyGames(payload.games, payload.activeGameId);
-    document.getElementById('lobby-status-text').textContent = `Host is preparing ${payload.activeGameTitle}...`;
-    handleRouting();
+    const statusTextEl = document.getElementById('lobby-status-text');
+    if (statusTextEl) {
+      statusTextEl.textContent = `Host is preparing ${payload.activeGameTitle}...`;
+    }
+
+    if (myName) {
+      showScreen('lobby-screen');
+      if (window.location.hash !== '#/lobby') {
+        window.location.hash = '#/lobby';
+      }
+    } else {
+      showScreen('welcome-screen');
+    }
     return;
   }
 
@@ -372,15 +394,25 @@ function startCountdown(endsAt) {
   const dial = document.getElementById('round-timer-dial');
 
   const tick = () => {
+    // Immediately kill countdown and ticking audio if no longer in round phase
+    if (currentServerPhase !== 'round') {
+      stopCountdown();
+      return;
+    }
+
     const remaining = Math.max(0, Math.ceil((endsAt - Date.now()) / 1000));
-    dial.textContent = remaining;
+    if (dial) dial.textContent = remaining;
 
     if (remaining <= 3 && remaining > 0) {
-      dial.classList.add('urgent');
+      if (dial) dial.classList.add('urgent');
       soundUrgentTick();
     } else {
-      dial.classList.remove('urgent');
+      if (dial) dial.classList.remove('urgent');
       if (remaining > 0) soundTick();
+    }
+
+    if (remaining <= 0) {
+      stopCountdown();
     }
   };
 
@@ -389,8 +421,10 @@ function startCountdown(endsAt) {
 }
 
 function stopCountdown() {
-  if (countdownInterval) clearInterval(countdownInterval);
-  countdownInterval = null;
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+    countdownInterval = null;
+  }
   const dial = document.getElementById('round-timer-dial');
   if (dial) dial.classList.remove('urgent');
 }
