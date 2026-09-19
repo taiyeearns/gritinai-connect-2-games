@@ -1,4 +1,6 @@
-const socket = io();
+const socket = io({
+  transports: ['websocket', 'polling']
+});
 
 // ---------------------------------------------------------------------------
 // PROCEDURAL AUDIO ENGINE FOR HOST
@@ -428,4 +430,10 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
+socket.on('connect', () => {
+  socket.emit('host:register');
+  socket.emit('host:get-state');
+});
+
+socket.emit('host:register');
 socket.emit('host:get-state');

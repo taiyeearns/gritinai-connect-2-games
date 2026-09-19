@@ -1,10 +1,17 @@
-const socket = io();
+const socket = io({
+  transports: ['websocket', 'polling']
+});
 
 // ---------------------------------------------------------------------------
 // AUDIO ENGINE (Web Audio API)
+// Sounds are strictly restricted to active gameplay (rounds / results)
 // ---------------------------------------------------------------------------
 let audioCtx = null;
 let audioEnabled = true;
+
+function isGameActive() {
+  return currentServerPhase === 'round' || currentServerPhase === 'roundResult' || currentServerPhase === 'gameEnded';
+}
 
 function setAudioEnabled(enabled) {
   audioEnabled = Boolean(enabled);
@@ -31,7 +38,7 @@ function getAudioContext() {
 }
 
 function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
-  if (!audioEnabled) return;
+  if (!audioEnabled || !isGameActive()) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -49,19 +56,22 @@ function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
 }
 
 function soundClick() {
+  if (!isGameActive()) return;
   playTone(600, 'sine', 0.05, 0.08);
 }
 
 function soundTick() {
+  if (!isGameActive()) return;
   playTone(880, 'sine', 0.04, 0.05);
 }
 
 function soundUrgentTick() {
+  if (!isGameActive()) return;
   playTone(1100, 'triangle', 0.06, 0.08);
 }
 
 function soundCorrect() {
-  if (!audioEnabled) return;
+  if (!audioEnabled || !isGameActive()) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -73,7 +83,7 @@ function soundCorrect() {
 }
 
 function soundWrong() {
-  if (!audioEnabled) return;
+  if (!audioEnabled || !isGameActive()) return;
   try {
     playTone(220, 'sawtooth', 0.25, 0.08);
   } catch (e) {}
@@ -110,9 +120,8 @@ function escapeHtml(str) {
 function navigate(route) {
   if (window.location.hash !== route) {
     window.location.hash = route;
-  } else {
-    handleRouting();
   }
+  handleRouting();
 }
 
 function showScreen(screenId) {
@@ -129,7 +138,8 @@ function showScreen(screenId) {
 }
 
 function handleRouting() {
-  const hash = window.location.hash || '#/';
+  let hash = window.location.hash || '#/';
+  if (hash === '' || hash === '#') hash = '#/';
 
   // If game is active on server, keep player in the game screens
   if (currentServerPhase === 'round') {
@@ -163,18 +173,14 @@ function handleRouting() {
     return;
   }
 
-  // Default: welcome / prejoin
-  if (myName && currentServerPhase === 'lobby') {
-    showScreen('lobby-screen');
-  } else {
-    showScreen('welcome-screen');
-  }
+  // Default: welcome / landing screen (e.g. '#/' or '#/home')
+  showScreen('welcome-screen');
 }
 
 window.addEventListener('hashchange', handleRouting);
 
 // ---------------------------------------------------------------------------
-// PRE-JOIN & JOIN BUTTON LISTENERS
+// PRE-JOIN & JOIN BUTTON LISTENERS (No sounds on UI navigation/lobby)
 // ---------------------------------------------------------------------------
 const welcomeEnterBtn = document.getElementById('welcome-enter-btn');
 const joinBackNav = document.getElementById('join-back-nav');
@@ -183,9 +189,16 @@ const lobbyChangeNameBtn = document.getElementById('lobby-change-name-btn');
 const joinSubmitBtn = document.getElementById('join-submit-btn');
 const nameInput = document.getElementById('name-input');
 const joinError = document.getElementById('join-error');
+const siteNavLink = document.querySelector('.site-nav-link');
+
+if (siteNavLink) {
+  siteNavLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigate('#/');
+  });
+}
 
 welcomeEnterBtn.addEventListener('click', () => {
-  soundClick();
   if (myName) {
     navigate('#/lobby');
   } else {
@@ -194,17 +207,14 @@ welcomeEnterBtn.addEventListener('click', () => {
 });
 
 joinBackNav.addEventListener('click', () => {
-  soundClick();
   navigate('#/');
 });
 
 lobbyBackNav.addEventListener('click', () => {
-  soundClick();
   navigate('#/');
 });
 
 lobbyChangeNameBtn.addEventListener('click', () => {
-  soundClick();
   navigate('#/join');
 });
 
@@ -214,7 +224,6 @@ nameInput.addEventListener('keydown', (e) => {
 });
 
 function doJoin() {
-  soundClick();
   const raw = nameInput.value.trim();
   if (!raw) {
     joinError.textContent = 'Please enter your name or alias';
@@ -235,7 +244,12 @@ socket.on('joined', ({ name }) => {
   document.getElementById('lobby-welcome-name').textContent = myName;
   document.getElementById('lobby-user-initials').textContent = getInitials(myName);
 
-  navigate('#/lobby');
+  const hash = window.location.hash || '#/';
+  if (hash === '#/join') {
+    navigate('#/lobby');
+  } else {
+    handleRouting();
+  }
 });
 
 // Auto-reconnect if name was previously saved
@@ -301,13 +315,18 @@ socket.on('session:update', (payload) => {
       statusTextEl.textContent = `Host is preparing ${payload.activeGameTitle}...`;
     }
 
-    if (myName) {
-      showScreen('lobby-screen');
-      if (window.location.hash !== '#/lobby') {
-        window.location.hash = '#/lobby';
+    const currentHash = window.location.hash || '#/';
+    if (currentHash === '#/lobby' || (currentHash !== '#/' && currentHash !== '#/join')) {
+      if (myName) {
+        showScreen('lobby-screen');
+        if (window.location.hash !== '#/lobby') {
+          window.location.hash = '#/lobby';
+        }
+      } else {
+        navigate('#/join');
       }
     } else {
-      showScreen('welcome-screen');
+      handleRouting();
     }
     return;
   }
@@ -540,5 +559,9 @@ function renderResultScreen(payload, isFinal) {
 if (myName) {
   const input = document.getElementById('name-input');
   if (input) input.value = myName;
+  const nameEl = document.getElementById('lobby-welcome-name');
+  if (nameEl) nameEl.textContent = myName;
+  const initialsEl = document.getElementById('lobby-user-initials');
+  if (initialsEl) initialsEl.textContent = getInitials(myName);
 }
 handleRouting();

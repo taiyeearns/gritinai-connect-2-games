@@ -6,10 +6,14 @@ const { Server } = require('socket.io');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: '*' }
+  cors: { origin: '*' },
+  transports: ['websocket', 'polling']
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '1h',
+  etag: true
+}));
 
 app.get('/host', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'host.html'));
@@ -512,9 +516,13 @@ function playerList() {
 }
 
 function broadcastPlayers() {
-  io.emit('players:update', {
+  const count = Object.keys(players).length;
+  // Lightweight count-only update for mobile players
+  io.emit('players:update', { count });
+  // Full player list strictly for host dashboard
+  io.to('host').emit('players:update', {
     players: playerList(),
-    count: playerList().length
+    count
   });
 }
 
@@ -522,18 +530,20 @@ function getActiveGameRounds() {
   return GAMES_CATALOG[activeGameId].rounds;
 }
 
-function leaderboardArray(gameId = activeGameId) {
+function leaderboardArray(gameId = activeGameId, limit = 0) {
   const gameScores = scores[gameId] || {};
-  return Object.keys(gameScores)
+  const sorted = Object.keys(gameScores)
     .map(name => ({
       name,
       initials: getInitials(name),
       score: gameScores[name]
     }))
     .sort((a, b) => b.score - a.score);
+
+  return limit > 0 ? sorted.slice(0, limit) : sorted;
 }
 
-function publicSessionPayload() {
+function publicSessionPayload(isHost = false) {
   const gameMeta = GAMES_CATALOG[activeGameId];
   const allGames = Object.keys(GAMES_CATALOG).map(id => ({
     id,
@@ -579,14 +589,14 @@ function publicSessionPayload() {
       explanation: round.explanation || null,
       resultUntil: session.resultUntil,
       isFinal: session.isFinal,
-      leaderboard: leaderboardArray(activeGameId)
+      leaderboard: leaderboardArray(activeGameId, isHost ? 100 : 10)
     };
   } else if (session.phase === 'gameEnded') {
     payload = {
       phase: 'gameEnded',
       gameId: activeGameId,
       gameTitle: gameMeta.title,
-      leaderboard: leaderboardArray(activeGameId)
+      leaderboard: leaderboardArray(activeGameId, isHost ? 100 : 10)
     };
   } else {
     payload = {
@@ -602,7 +612,8 @@ function publicSessionPayload() {
 }
 
 function broadcastSession() {
-  io.emit('session:update', publicSessionPayload());
+  io.emit('session:update', publicSessionPayload(false));
+  io.to('host').emit('session:update', publicSessionPayload(true));
 }
 
 function startRound(idx) {
@@ -626,7 +637,7 @@ function startRound(idx) {
   };
 
   broadcastSession();
-  io.emit('answered:count', 0);
+  io.to('host').emit('answered:count', 0);
 
   if (roundTimeoutHandle) clearTimeout(roundTimeoutHandle);
   roundTimeoutHandle = setTimeout(() => finalizeRound(idx), durationMs);
@@ -647,11 +658,11 @@ function finalizeRound(idx) {
     .filter(a => a.choice === round.correct)
     .sort((a, b) => a.answeredAt - b.answeredAt);
 
-  // Award points based on arrival order (fastest = 100, reduces by 1 per subsequent correct answer down to 0)
-  // Accommodates up to 100 players on leaderboard (Rank 1 = 100 pts, Rank 2 = 99 pts ... Rank 100 = 1 pt)
+  // Award points: Base 20 pts for correct answer + up to 80 speed bonus points (scales up to 200 players)
   const roundPointsMap = {};
   correctEntries.forEach((entry, rankIdx) => {
-    const points = Math.max(100 - rankIdx, 0);
+    const speedBonus = Math.max(80 - rankIdx, 0);
+    const points = 20 + speedBonus;
     scores[activeGameId][entry.name] = (scores[activeGameId][entry.name] || 0) + points;
     roundPointsMap[entry.name] = {
       rank: rankIdx + 1,
@@ -744,9 +755,9 @@ io.on('connection', (socket) => {
       name: finalName,
       initials: getInitials(finalName)
     });
-    socket.emit('players:update', { players: playerList(), count: playerList().length });
+    socket.emit('players:update', { count: Object.keys(players).length });
     socket.emit('audio:state', gameAudioEnabled);
-    socket.emit('session:update', publicSessionPayload());
+    socket.emit('session:update', publicSessionPayload(false));
   });
 
   socket.on('answer', (choice) => {
@@ -761,11 +772,17 @@ io.on('connection', (socket) => {
       socketId: socket.id
     };
 
-    io.emit('answered:count', Object.keys(currentAnswers).length);
+    // Emit ONLY to host dashboard room to avoid 40,000-message storm to mobile devices
+    io.to('host').emit('answered:count', Object.keys(currentAnswers).length);
   });
 
   // Host Controls
+  socket.on('host:register', () => {
+    socket.join('host');
+  });
+
   socket.on('host:select-game', (gameId) => {
+    socket.join('host');
     if (GAMES_CATALOG[gameId] && session.phase === 'lobby') {
       activeGameId = gameId;
       broadcastSession();
@@ -773,16 +790,17 @@ io.on('connection', (socket) => {
   });
 
   socket.on('host:start-game', (gameId) => {
+    socket.join('host');
     if (gameId && GAMES_CATALOG[gameId]) {
       activeGameId = gameId;
     }
     if (session.phase !== 'lobby' && session.phase !== 'gameEnded') return;
-    // Reset scores for this game so each game is independent and fresh
     scores[activeGameId] = {};
     startRound(0);
   });
 
   socket.on('host:return-lobby', () => {
+    socket.join('host');
     if (roundTimeoutHandle) {
       clearTimeout(roundTimeoutHandle);
       roundTimeoutHandle = null;
@@ -793,6 +811,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('host:skip-round', () => {
+    socket.join('host');
     if (session.phase !== 'round') return;
     if (roundTimeoutHandle) {
       clearTimeout(roundTimeoutHandle);
@@ -802,20 +821,23 @@ io.on('connection', (socket) => {
   });
 
   socket.on('host:reset-scores', () => {
+    socket.join('host');
     scores[activeGameId] = {};
     broadcastSession();
   });
 
   socket.on('host:set-audio', (enabled) => {
+    socket.join('host');
     gameAudioEnabled = Boolean(enabled);
     io.emit('audio:state', gameAudioEnabled);
     broadcastSession();
   });
 
   socket.on('host:get-state', () => {
-    socket.emit('players:update', { players: playerList(), count: playerList().length });
+    socket.join('host');
+    socket.emit('players:update', { players: playerList(), count: Object.keys(players).length });
     socket.emit('audio:state', gameAudioEnabled);
-    socket.emit('session:update', publicSessionPayload());
+    socket.emit('session:update', publicSessionPayload(true));
   });
 
   socket.on('disconnect', () => {
