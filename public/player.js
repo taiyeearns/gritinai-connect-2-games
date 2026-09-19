@@ -4,18 +4,34 @@ const socket = io();
 // AUDIO ENGINE (Web Audio API)
 // ---------------------------------------------------------------------------
 let audioCtx = null;
+let audioEnabled = true;
+
+function setAudioEnabled(enabled) {
+  audioEnabled = Boolean(enabled);
+  if (!audioEnabled && audioCtx && audioCtx.state === 'running') {
+    audioCtx.suspend().catch(() => {});
+  } else if (audioEnabled && audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(() => {});
+  }
+}
+
+socket.on('audio:state', (enabled) => {
+  setAudioEnabled(enabled);
+});
+
 function getAudioContext() {
   if (!audioCtx) {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     if (AudioContext) audioCtx = new AudioContext();
   }
-  if (audioCtx && audioCtx.state === 'suspended') {
-    audioCtx.resume();
+  if (audioCtx && audioCtx.state === 'suspended' && audioEnabled) {
+    audioCtx.resume().catch(() => {});
   }
   return audioCtx;
 }
 
 function playTone(freq, type = 'sine', duration = 0.15, gainVal = 0.1) {
+  if (!audioEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -45,6 +61,7 @@ function soundUrgentTick() {
 }
 
 function soundCorrect() {
+  if (!audioEnabled) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;
@@ -56,6 +73,7 @@ function soundCorrect() {
 }
 
 function soundWrong() {
+  if (!audioEnabled) return;
   try {
     playTone(220, 'sawtooth', 0.25, 0.08);
   } catch (e) {}
@@ -268,6 +286,9 @@ function renderLobbyGames(games, activeGameId) {
 // ---------------------------------------------------------------------------
 socket.on('session:update', (payload) => {
   currentServerPhase = payload.phase;
+  if (typeof payload.audioEnabled === 'boolean') {
+    setAudioEnabled(payload.audioEnabled);
+  }
 
   if (payload.phase === 'lobby') {
     stopCountdown();

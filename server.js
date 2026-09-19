@@ -481,6 +481,7 @@ let scores = {
   game2: {},
   game3: {}
 };
+let gameAudioEnabled = true;
 let currentAnswers = {};    // name -> { choice, answeredAt, socketId }
 let roundTimeoutHandle = null;
 
@@ -543,10 +544,11 @@ function publicSessionPayload() {
     isActive: id === activeGameId
   }));
 
+  let payload;
   if (session.phase === 'round') {
     const rounds = getActiveGameRounds();
     const round = rounds[session.roundIndex];
-    return {
+    payload = {
       phase: 'round',
       gameId: activeGameId,
       gameTitle: gameMeta.title,
@@ -563,12 +565,10 @@ function publicSessionPayload() {
       options: round.options,
       roundEndsAt: session.roundEndsAt
     };
-  }
-
-  if (session.phase === 'roundResult') {
+  } else if (session.phase === 'roundResult') {
     const rounds = getActiveGameRounds();
     const round = rounds[session.roundIndex];
-    return {
+    payload = {
       phase: 'roundResult',
       gameId: activeGameId,
       gameTitle: gameMeta.title,
@@ -581,23 +581,24 @@ function publicSessionPayload() {
       isFinal: session.isFinal,
       leaderboard: leaderboardArray(activeGameId)
     };
-  }
-
-  if (session.phase === 'gameEnded') {
-    return {
+  } else if (session.phase === 'gameEnded') {
+    payload = {
       phase: 'gameEnded',
       gameId: activeGameId,
       gameTitle: gameMeta.title,
       leaderboard: leaderboardArray(activeGameId)
     };
+  } else {
+    payload = {
+      phase: 'lobby',
+      activeGameId,
+      activeGameTitle: gameMeta.title,
+      games: allGames
+    };
   }
 
-  return {
-    phase: 'lobby',
-    activeGameId,
-    activeGameTitle: gameMeta.title,
-    games: allGames
-  };
+  payload.audioEnabled = gameAudioEnabled;
+  return payload;
 }
 
 function broadcastSession() {
@@ -744,6 +745,7 @@ io.on('connection', (socket) => {
       initials: getInitials(finalName)
     });
     socket.emit('players:update', { players: playerList(), count: playerList().length });
+    socket.emit('audio:state', gameAudioEnabled);
     socket.emit('session:update', publicSessionPayload());
   });
 
@@ -804,8 +806,15 @@ io.on('connection', (socket) => {
     broadcastSession();
   });
 
+  socket.on('host:set-audio', (enabled) => {
+    gameAudioEnabled = Boolean(enabled);
+    io.emit('audio:state', gameAudioEnabled);
+    broadcastSession();
+  });
+
   socket.on('host:get-state', () => {
     socket.emit('players:update', { players: playerList(), count: playerList().length });
+    socket.emit('audio:state', gameAudioEnabled);
     socket.emit('session:update', publicSessionPayload());
   });
 

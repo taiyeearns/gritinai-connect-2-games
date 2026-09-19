@@ -89,9 +89,23 @@ fsBtn.addEventListener('click', () => {
 
 // Audio toggle
 const audioBtn = document.getElementById('host-audio-toggle');
+
+function updateAudioBtnUI(enabled) {
+  audioEnabled = Boolean(enabled);
+  if (audioBtn) {
+    audioBtn.textContent = audioEnabled ? 'Audio: On' : 'Audio: Off';
+    audioBtn.classList.toggle('muted', !audioEnabled);
+  }
+}
+
 audioBtn.addEventListener('click', () => {
   audioEnabled = !audioEnabled;
-  audioBtn.textContent = audioEnabled ? 'Audio: On' : 'Audio: Off';
+  updateAudioBtnUI(audioEnabled);
+  socket.emit('host:set-audio', audioEnabled);
+});
+
+socket.on('audio:state', (enabled) => {
+  updateAudioBtnUI(enabled);
 });
 
 // Sidebar Tabs: Leaderboard vs Roster
@@ -171,6 +185,9 @@ socket.on('answered:count', (answeredCount) => {
 // ---------------------------------------------------------------------------
 socket.on('session:update', (payload) => {
   currentPayload = payload;
+  if (typeof payload.audioEnabled === 'boolean') {
+    updateAudioBtnUI(payload.audioEnabled);
+  }
   if (payload.activeGameId) {
     activeGameTab = payload.activeGameId;
     updateGameTabs(payload.activeGameId);
