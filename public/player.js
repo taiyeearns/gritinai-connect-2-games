@@ -90,6 +90,37 @@ function soundWrong() {
 }
 
 // ---------------------------------------------------------------------------
+// THEME MANAGER (Dark / Light Mode)
+// ---------------------------------------------------------------------------
+const themeToggleBtn = document.getElementById('player-theme-toggle-btn');
+const themeLabel = document.getElementById('theme-label-text');
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.body.classList.toggle('dark-theme', isDark);
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  if (themeLabel) {
+    themeLabel.textContent = isDark ? 'Light' : 'Dark';
+  }
+  if (themeToggleBtn) {
+    themeToggleBtn.classList.toggle('is-dark', isDark);
+    themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    themeToggleBtn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  localStorage.setItem('gritin_player_theme', theme);
+}
+
+const savedPlayerTheme = localStorage.getItem('gritin_player_theme') || 'dark';
+applyTheme(savedPlayerTheme);
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    const isCurrentlyDark = document.body.classList.contains('dark-theme');
+    applyTheme(isCurrentlyDark ? 'light' : 'dark');
+  });
+}
+
+// ---------------------------------------------------------------------------
 // CLIENT STATE & INITIALS
 // ---------------------------------------------------------------------------
 let myName = localStorage.getItem('gritin_player_name') || null;
@@ -124,17 +155,20 @@ function navigate(route) {
   handleRouting();
 }
 
+// Header scroll blur effect
+const siteHeader = document.getElementById('site-header');
+if (siteHeader) {
+  window.addEventListener('scroll', () => {
+    siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+  }, { passive: true });
+}
+
 function showScreen(screenId) {
-  const screens = ['welcome-screen', 'join-screen', 'lobby-screen', 'round-screen', 'result-screen'];
+  const screens = ['welcome-screen', 'join-screen', 'lobby-screen', 'countdown-screen', 'round-screen', 'result-screen'];
   screens.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.classList.toggle('hidden', id !== screenId);
   });
-
-  const siteNav = document.querySelector('.site-nav');
-  if (siteNav) {
-    siteNav.classList.toggle('hidden', screenId === 'welcome-screen');
-  }
 }
 
 function handleRouting() {
@@ -142,6 +176,10 @@ function handleRouting() {
   if (hash === '' || hash === '#') hash = '#/';
 
   // If game is active on server, keep player in the game screens
+  if (currentServerPhase === 'startingCountdown') {
+    showScreen('countdown-screen');
+    return;
+  }
   if (currentServerPhase === 'round') {
     showScreen('round-screen');
     return;
@@ -312,7 +350,8 @@ socket.on('session:update', (payload) => {
     renderLobbyGames(payload.games, payload.activeGameId);
     const statusTextEl = document.getElementById('lobby-status-text');
     if (statusTextEl) {
-      statusTextEl.textContent = `Host is preparing ${payload.activeGameTitle}...`;
+      const setName = (payload.activeSetId || 'set1').replace('set', 'Set ');
+      statusTextEl.textContent = `Host is preparing ${payload.activeGameTitle} (${setName})...`;
     }
 
     const currentHash = window.location.hash || '#/';
@@ -331,7 +370,40 @@ socket.on('session:update', (payload) => {
     return;
   }
 
+  if (payload.phase === 'startingCountdown') {
+    stopCountdown();
+    // Pre-cache first round image during the 3.5-second countdown
+    if (payload.firstRoundImage) {
+      const preloadImg = new Image();
+      preloadImg.src = payload.firstRoundImage;
+    }
+
+    const numEl = document.getElementById('player-countdown-num');
+    const gameEl = document.getElementById('player-countdown-game');
+    if (gameEl) gameEl.textContent = `${payload.gameTitle} • ${(payload.setId || 'set1').toUpperCase()}`;
+
+    const tickStart = () => {
+      const remaining = Math.max(0, Math.ceil((payload.startsAt - Date.now()) / 1000));
+      if (numEl) {
+        if (remaining > 0) {
+          numEl.textContent = remaining;
+          numEl.style.transform = 'scale(1.15)';
+          setTimeout(() => { if (numEl) numEl.style.transform = 'scale(1)'; }, 100);
+          soundUrgentTick();
+        } else {
+          numEl.textContent = 'GO!';
+          numEl.style.color = 'var(--emerald)';
+        }
+      }
+    };
+    tickStart();
+    countdownInterval = setInterval(tickStart, 300);
+    showScreen('countdown-screen');
+    return;
+  }
+
   if (payload.phase === 'round') {
+    stopCountdown();
     if (!currentRound || currentRound.roundIndex !== payload.roundIndex || currentRound.gameId !== payload.gameId) {
       currentRound = payload;
       answeredThisRound = false;
@@ -344,6 +416,11 @@ socket.on('session:update', (payload) => {
 
   if (payload.phase === 'roundResult') {
     stopCountdown();
+    // Pre-cache upcoming round image during the 6-second reveal break
+    if (payload.nextRoundImage) {
+      const preloadNext = new Image();
+      preloadNext.src = payload.nextRoundImage;
+    }
     renderResultScreen(payload, false);
     showScreen('result-screen');
     return;
@@ -518,7 +595,15 @@ function renderResultScreen(payload, isFinal) {
   } else {
     titleEl.textContent = `Round ${payload.roundIndex + 1} Results`;
     subEl.textContent = 'Current Leaderboard Standings';
-    nextTextEl.textContent = 'Next round begins shortly...';
+    
+    // Live countdown to next round
+    const updateNextTimer = () => {
+      if (currentServerPhase !== 'roundResult') return;
+      const remaining = Math.max(0, Math.ceil((payload.resultUntil - Date.now()) / 1000));
+      nextTextEl.innerHTML = `Next round begins in <strong class="countdown-highlight">${remaining}s</strong>...`;
+    };
+    updateNextTimer();
+    countdownInterval = setInterval(updateNextTimer, 300);
   }
 
   if (payload.explanation) {

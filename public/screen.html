@@ -1,41 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" class="broadcaster-html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Host: GritinAI Connect 2.0</title>
-  <meta name="description" content="Host command center and projector view for GritinAI Connect 2.0 Live Games.">
+  <title>Live Broadcaster: GritinAI Connect 2.0</title>
+  <meta name="description" content="Official live projector and leaderboard broadcaster for GritinAI Connect 2.0.">
   <link rel="icon" type="image/png" href="/assets/logo-connect.png">
   <link rel="apple-touch-icon" href="/assets/logo-connect.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
-  <script>window.location.replace('/screen');</script>
 </head>
-<body class="host-body">
+<body class="host-body broadcaster-body dark-theme">
 
-  <div class="host-container">
-    <!-- TOP NAVIGATION & COMMAND BAR -->
-    <header class="host-navbar">
+  <div class="host-container broadcaster-container">
+    <!-- TOP NAVIGATION: CLEAN BRANDING & BROADCAST UTILITIES ONLY -->
+    <header class="host-navbar broadcaster-navbar">
       <div class="host-brand-lockup">
         <img class="host-brand-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
       </div>
 
-      <!-- Game Selection Tabs (No Emojis) -->
-      <div class="host-nav-center">
-        <button class="host-game-tab active" data-game="game1" id="tab-game1">
-          <span>Nature Guess</span>
-        </button>
-        <button class="host-game-tab" data-game="game2" id="tab-game2">
-          <span>Tech &amp; AI Quiz</span>
-        </button>
-        <button class="host-game-tab" data-game="game3" id="tab-game3">
-          <span>AI or Human?</span>
-        </button>
+      <!-- Live Session Status Pill -->
+      <div class="broadcaster-status-pill" id="screen-game-pill">
+        <span class="broadcaster-game-title" id="screen-pill-title">GritinAI Arena</span>
       </div>
 
-      <!-- Live Stats & Action Utilities -->
+      <!-- Utilities: Player Count, Audio, Fullscreen -->
       <div class="host-nav-right">
         <div class="host-live-badge">
           <span class="live-dot"></span>
@@ -46,10 +37,10 @@
       </div>
     </header>
 
-    <!-- SPLIT BROADCAST ARENA -->
-    <main class="host-main-grid">
-      <!-- CENTER / LEFT: MAIN LIVE STAGE -->
-      <section class="host-stage-card" id="host-stage-card">
+    <!-- MAIN BROADCAST ARENA (Responsive: Side-by-side on desktop, Stacked on mobile) -->
+    <main class="host-main-grid broadcaster-grid">
+      <!-- CENTER / TOP: MAIN LIVE STAGE -->
+      <section class="host-stage-card broadcaster-stage-card" id="host-stage-card">
         <div>
           <div class="host-stage-header">
             <span class="host-stage-tag" id="host-stage-tag">LOBBY ARENA</span>
@@ -71,15 +62,10 @@
             <div class="meter-bar-fill" id="host-meter-fill"></div>
           </div>
         </div>
-
-        <!-- Host Action Controls Deck -->
-        <div class="host-controls-deck" id="host-controls-deck">
-          <!-- Dynamic control buttons based on phase -->
-        </div>
       </section>
 
-      <!-- RIGHT COLUMN: LEADERBOARD & ROSTER -->
-      <aside class="host-sidebar-card">
+      <!-- SIDEBAR / BOTTOM: LIVE LEADERBOARD & ROSTER -->
+      <aside class="host-sidebar-card broadcaster-sidebar-card">
         <div class="host-sidebar-tabs">
           <button class="host-side-tab active" id="tab-show-lb">Leaderboard</button>
           <button class="host-side-tab" id="tab-show-roster">Player Roster (<span id="host-roster-count">0</span>)</button>
@@ -97,10 +83,10 @@
       </aside>
     </main>
 
-    <footer>GritinAI Connect 2.0: Benin City Projector Broadcast View | Shortcuts: [Space] Next/Start, [L] Lobby, [F] Fullscreen, [M] Mute</footer>
+    <footer class="broadcaster-footer">GritinAI Connect 2.0: Benin City Projector Broadcast View | [F] Fullscreen, [M] Mute</footer>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script src="/host.js"></script>
+  <script src="/screen.js"></script>
 </body>
 </html>

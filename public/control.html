@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" class="control-html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Host Control Deck: GritinAI Connect 2.0</title>
+  <meta name="description" content="Dedicated game master command center for GritinAI Connect 2.0.">
+  <link rel="icon" type="image/png" href="/assets/logo-connect.png">
+  <link rel="apple-touch-icon" href="/assets/logo-connect.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="host-body control-body dark-theme">
+
+  <!-- =========================================================================
+       1. PASSCODE AUTHENTICATION MODAL / SCREEN (Redesigned & Mobile-First)
+       ========================================================================= -->
+  <div class="control-auth-wrapper" id="control-auth-screen">
+    <div class="control-auth-card">
+      <div class="auth-brand">
+        <img class="host-brand-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
+      </div>
+      <h2 class="auth-title">Host Command Center</h2>
+      <p class="auth-subtitle">Authorized Game Masters Only. Enter password to access live game controls.</p>
+
+      <form id="control-auth-form" class="auth-form-styled">
+        <div class="auth-field-group">
+          <label class="auth-field-label" for="control-passcode-input">Master Passcode</label>
+
+          <div class="auth-input-container">
+            <input type="password" id="control-passcode-input" class="auth-styled-input" placeholder="Enter password" autocomplete="current-password" required>
+            <button type="button" class="auth-eye-btn" id="auth-eye-btn" aria-label="Toggle password visibility">
+              <span id="auth-eye-text">Show</span>
+            </button>
+          </div>
+
+          <div class="error-text" id="control-auth-error"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-large auth-unlock-btn" id="control-submit-btn">
+          <span>Unlock Command Center</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       2. UNLOCKED HOST COMMAND CENTER (Mobile & Desktop Optimized)
+       ========================================================================= -->
+  <div class="host-container control-container hidden" id="control-deck-screen">
+    <!-- TOP NAVIGATION: RESTRUCTURED FOR CLEAN MOBILE & DESKTOP RENDERING -->
+    <header class="host-navbar control-navbar">
+      <div class="control-nav-top">
+        <div class="host-brand-lockup">
+          <img class="host-brand-logo" src="/assets/logo-connect.png" alt="GritinAI Connect 2.0">
+          <span class="control-badge-tag">HOST COMMAND</span>
+        </div>
+        <button class="host-icon-btn btn-ghost-danger ctrl-lock-btn" id="ctrl-logout-btn">Lock Deck</button>
+      </div>
+
+      <div class="control-nav-sub">
+        <div class="host-live-badge">
+          <span class="live-dot"></span>
+          <span id="ctrl-players-count">0</span> PLAYERS
+        </div>
+        <button class="host-icon-btn" id="ctrl-audio-toggle">Audio: On</button>
+      </div>
+    </header>
+
+    <!-- CONTROL GRID LAYOUT -->
+    <main class="control-main-grid">
+      <!-- LEFT / TOP: GAME CONTROLS & COMMANDS -->
+      <div class="control-primary-panel">
+        
+        <!-- SECTION A: GAME SELECTION TABS -->
+        <div class="control-card">
+          <div class="control-card-header">
+            <span class="control-card-tag">STEP 1: SELECT CHALLENGE</span>
+            <span class="control-card-status" id="ctrl-active-game-label">Nature Guess</span>
+          </div>
+
+          <div class="control-games-grid">
+            <button class="control-game-btn active" data-game="game1" id="ctrl-tab-game1">
+              <span class="ctrl-game-num">01</span>
+              <div class="ctrl-game-info">
+                <span class="ctrl-game-title">Nature Guess</span>
+                <span class="ctrl-game-sub">Nigerian &amp; Global Landmarks</span>
+              </div>
+            </button>
+            <button class="control-game-btn" data-game="game2" id="ctrl-tab-game2">
+              <span class="ctrl-game-num">02</span>
+              <div class="ctrl-game-info">
+                <span class="ctrl-game-title">Tech &amp; AI Quiz</span>
+                <span class="ctrl-game-sub">Machine Learning &amp; AI Trivia</span>
+              </div>
+            </button>
+            <button class="control-game-btn" data-game="game3" id="ctrl-tab-game3">
+              <span class="ctrl-game-num">03</span>
+              <div class="ctrl-game-info">
+                <span class="ctrl-game-title">AI or Human?</span>
+                <span class="ctrl-game-sub">Craft vs Algorithm Evaluation</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- SECTION B: QUESTION SET SELECTOR (5 Sets) -->
+        <div class="control-card">
+          <div class="control-card-header">
+            <span class="control-card-tag">STEP 2: SELECT QUESTION SET</span>
+            <span class="control-card-status" id="ctrl-active-set-label">Set 1 Active (15 Questions)</span>
+          </div>
+
+          <div class="control-sets-row" id="ctrl-sets-container">
+            <button class="control-set-pill active" data-set="set1" id="ctrl-set-set1">
+              <span class="set-name">Set 1</span>
+              <span class="set-meta">15 Qs</span>
+            </button>
+            <button class="control-set-pill" data-set="set2" id="ctrl-set-set2">
+              <span class="set-name">Set 2</span>
+              <span class="set-meta">15 Qs</span>
+            </button>
+            <button class="control-set-pill" data-set="set3" id="ctrl-set-set3">
+              <span class="set-name">Set 3</span>
+              <span class="set-meta">15 Qs</span>
+            </button>
+            <button class="control-set-pill" data-set="set4" id="ctrl-set-set4">
+              <span class="set-name">Set 4</span>
+              <span class="set-meta">15 Qs</span>
+            </button>
+            <button class="control-set-pill" data-set="set5" id="ctrl-set-set5">
+              <span class="set-name">Set 5</span>
+              <span class="set-meta">15 Qs</span>
+            </button>
+          </div>
+          <div class="control-hint-text" id="ctrl-set-locked-hint">
+            Question sets can be changed while in the Lobby arena.
+          </div>
+        </div>
+
+        <!-- SECTION C: LIVE STATUS & ACTION DECK -->
+        <div class="control-card control-action-card">
+          <div class="control-card-header">
+            <span class="control-card-tag" id="ctrl-phase-tag">PHASE: LOBBY</span>
+            <div class="ctrl-timer-small hidden" id="ctrl-timer-small">12s</div>
+          </div>
+
+          <div class="control-live-summary" id="ctrl-live-summary">
+            <h3 class="ctrl-summary-title" id="ctrl-summary-title">Ready to Launch Session</h3>
+            <p class="ctrl-summary-detail" id="ctrl-summary-detail">All players connected will enter the challenge when you click Launch.</p>
+          </div>
+
+          <!-- Live Submission Meter -->
+          <div class="host-response-meter" style="margin: 16px 0 20px 0;">
+            <div class="meter-header">
+              <span>AUDIENCE RESPONSES</span>
+              <span id="ctrl-meter-label">0 / 0 answered</span>
+            </div>
+            <div class="meter-bar-track">
+              <div class="meter-bar-fill" id="ctrl-meter-fill"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Action Buttons Deck -->
+          <div class="control-buttons-deck" id="ctrl-buttons-deck">
+            <!-- Buttons injected based on phase -->
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT / BOTTOM: AUDIENCE ROSTER & SCORES SUMMARY -->
+      <div class="control-secondary-panel">
+        <div class="control-card roster-card">
+          <div class="control-card-header">
+            <span class="control-card-tag">AUDIENCE ROSTER (<span id="ctrl-roster-count">0</span>)</span>
+            <button class="btn-ghost-small" id="ctrl-refresh-roster">Refresh</button>
+          </div>
+
+          <div class="control-roster-list" id="ctrl-roster-list">
+            <div class="empty-state">No players connected yet</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="broadcaster-footer">GritinAI Connect 2.0 Host Control Deck | Protected Session</footer>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/control.js"></script>
+</body>
+</html>
