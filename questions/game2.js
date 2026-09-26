@@ -1,636 +1,862 @@
 // ============================================================================
 // GAME 2: Tech & AI Quiz — 5 Complete Sets of 15 Questions (75 Questions)
-// Includes deep coverage of GritinAI products, Connect 2.0, Africa's AI ecosystem,
-// Foundation Models, Transformers, Deep Learning, Hardware & Software Engineering
+// GritinAI Connect 2.0 — AI & Tech Quiz
+// Deep coverage of GritinAI products, Connect 2.0, Africa's tech ecosystem,
+// Nigerian startups, global computing history, AI foundations and cybersecurity
 // ============================================================================
 
 // ----------------------------------------------------------------------------
-// SET 1: AI Foundations & The Rise of GritinAI
+// SET 1 (ROUND 1)
 // ----------------------------------------------------------------------------
 const SET1 = [
   {
     type: 'quiz',
-    label: 'What does the "GPT" in ChatGPT stand for?',
-    subtitle: 'The foundational architectural paradigm powering modern LLMs',
-    options: ['General Pre-trained Tensor', 'Generative Pre-trained Transformer', 'Global Predictive Translation', 'Graph Processed Transformer'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the official overarching theme of GritinAI Connect 2.0?',
-    subtitle: 'Guiding Africa from AI awareness into measurable action',
-    options: ['AI for Entertainment', 'Accelerating Africa\'s Digital Economy with AI', 'The Rise of Quantum Robotics', 'Coding for Tomorrow'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'In 2017, Google researchers published which landmark paper introducing Transformers?',
-    subtitle: 'The seminal paper that revolutionized natural language processing',
-    options: ['Deep Residual Learning', 'Attention Is All You Need', 'Mastering the Game of Go', 'Transformers in Vision'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which GritinAI product is purpose-built as an AI prototyping platform for builders?',
-    subtitle: 'Featured in practical developer workshops at Connect 2.0',
-    options: ['Rapid', 'Ubá', 'Omnili', 'Apex'],
+    label: 'GritinAI\'s product "Ubá" is best described as what?',
+    subtitle: 'One of GritinAI\'s own products.',
+    options: [
+      'A smart inventory management tool',
+      'An AI prototyping tool',
+      'A live mentoring platform',
+      'A government policy dashboard'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Who devised the famous 1950 "Imitation Game" benchmark for machine intelligence?',
-    subtitle: 'Widely celebrated British mathematician and pioneer of computing',
-    options: ['John von Neumann', 'Alan Turing', 'Claude Shannon', 'Ada Lovelace'],
+    label: 'What does "GPT" stand for in ChatGPT?',
+    subtitle: 'Powers ChatGPT.',
+    options: [
+      'General Purpose Training',
+      'Generative Pre-trained Transformer',
+      'Global Processing Terminal',
+      'Generative Programming Tool'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What term describes an LLM generating plausible-sounding facts that are completely untrue?',
-    subtitle: 'A primary safety and accuracy challenge in generative AI',
-    options: ['Overfitting', 'Hallucination', 'Drifting', 'Quantization Error'],
-    correct: 1,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'Where in Nigeria is GritinAI Connect 2.0 held on September 26, 2026?',
-    subtitle: 'Historic cultural capital of Edo State',
-    options: ['Eko Hotel, Lagos', 'International Conference Centre, Abuja', 'Victor Uwaifo Creative Hub, Benin City', 'Port Harcourt Civic Centre'],
+    label: 'Paystack, the Nigerian fintech acquired by Stripe in 2020, was founded in what year?',
+    subtitle: 'Acquired by Stripe in 2020.',
+    options: ['2013', '2019', '2015', '2017'],
     correct: 2,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which company developed AlphaFold, revolutionizing protein structure prediction?',
-    subtitle: 'A historic breakthrough in computational structural biology',
-    options: ['OpenAI', 'Google DeepMind', 'Meta AI (FAIR)', 'Anthropic'],
-    correct: 1,
+    label: 'Keynote speaker Mrs Olamide Efosa\'s talk, "The Catalyst Effect," focuses on what?',
+    subtitle: 'Her keynote talk title.',
+    options: [
+      'Building government AI policy frameworks',
+      'AI ethics and responsible data use',
+      'AI applications in healthcare diagnostics',
+      'Harnessing AI for African economic growth and entrepreneurship'
+    ],
+    correct: 3,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What alignment method uses human preferences to fine-tune conversational AI models?',
-    subtitle: 'Responsible for turning raw base models into helpful assistants',
-    options: ['RLHF (Reinforcement Learning from Human Feedback)', 'GAN (Generative Adversarial Network)', 'CNN (Convolutional Neural Network)', 'SVM (Support Vector Machine)'],
+    label: 'What does "LLM" stand for in AI?',
+    subtitle: 'Powers tools like ChatGPT.',
+    options: [
+      'Large Language Model',
+      'Layered Learning Method',
+      'Linked Logic Model',
+      'Long Learning Machine'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which GritinAI smart business product is built for inventory management and local commerce?',
-    subtitle: 'Empowering local retail and MSMEs across Nigerian states',
-    options: ['Ubá', 'Rapid', 'Omnili', 'Konga'],
+    label: 'A googol is a number followed by how many zeros?',
+    subtitle: 'Inspired a search engine\'s name.',
+    options: ['10 zeros', '100 zeros', '1,000 zeros', '10,000 zeros'],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Where is GritinAI Connect 2.0 taking place?',
+    subtitle: 'Same as Connect 1.0.',
+    options: [
+      'Glass House, Airport Road',
+      'Benin Mall',
+      'Victor Uwaifo Creative Hub',
+      'Rema Dome'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Nvidia is best known for making which kind of chip, now central to training AI models?',
+    subtitle: 'Key AI hardware maker.',
+    options: ['CPU', 'RAM', 'SSD', 'GPU'],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Flutterwave, one of Africa\'s most valuable startups, was founded in what year?',
+    subtitle: 'Major African payments startup.',
+    options: ['2016', '2014', '2015', '2018'],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What does "RAG" stand for in enterprise generative AI architectures?',
-    subtitle: 'Connecting models to custom databases without full retraining',
-    options: ['Real-time Automated Generation', 'Retrieval-Augmented Generation', 'Recursive Adversarial Gradient', 'Relational Array Graphing'],
+    label: 'Peter Nnachor leads which workshop track at GritinAI Connect 2.0?',
+    subtitle: 'A hands-on session track.',
+    options: [
+      'Build with Ubá',
+      'Build with Rapid',
+      'Build with Omnili',
+      'MSME Clinic'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which programming language is the undisputed industry standard for deep learning?',
-    subtitle: 'Supported by frameworks like PyTorch, TensorFlow, and JAX',
-    options: ['C++', 'Rust', 'Python', 'Java'],
-    correct: 2,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'Approximately how many participants attended the inaugural GritinAI Connect 1.0 in 2025?',
-    subtitle: 'Gathering innovators from Abuja, Lagos, and across Nigeria',
-    options: ['100+', '300+', '1,000+', '10,000+'],
+    label: 'AlphaGo, the program that beat a world champion Go player, was developed by which AI lab?',
+    subtitle: 'Beat a Go champion.',
+    options: ['OpenAI', 'Anthropic', 'DeepMind', 'Meta AI'],
     correct: 2,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What type of hardware semiconductor is predominantly used to train massive frontier LLMs?',
-    subtitle: 'Specialized chips originally engineered for 3D graphics rendering',
-    options: ['CPUs (Central Processing Units)', 'GPUs (Graphics Processing Units)', 'Hard Disk Drives', 'Quantum Transistors'],
-    correct: 1,
-    timer: 10
+    label: 'IBM\'s Deep Blue famously defeated which world chess champion in 1997?',
+    subtitle: '1997 chess match, man vs machine.',
+    options: [
+      'Anatoly Karpov',
+      'Magnus Carlsen',
+      'Bobby Fischer',
+      'Garry Kasparov'
+    ],
+    correct: 3,
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which open-weight frontier model family was released by Meta under Mark Zuckerberg?',
-    subtitle: 'Spurred a global open-source AI renaissance starting in 2023',
-    options: ['Gemini', 'Llama', 'Claude', 'Mistral'],
+    label: 'Mrs Ysika moderates which panel session at GritinAI Connect 2.0?',
+    subtitle: 'A panel discussion topic.',
+    options: [
+      'Catalysing Africa\'s Digital Economy',
+      'AI for Governance Transformation',
+      'Workforce Readiness & Skills',
+      'Sustainable AI Integration'
+    ],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Andela, the Nigerian-founded tech company, is best known for what?',
+    subtitle: 'Connects African talent globally.',
+    options: [
+      'Running an e-commerce logistics network',
+      'Training and placing software developers with global companies',
+      'Offering student loans for tech bootcamps',
+      'Manufacturing computer hardware locally'
+    ],
     correct: 1,
-    timer: 10
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Nigeria\'s 3MTT programme aims to train how many million tech talents?',
+    subtitle: 'A federal training initiative.',
+    options: ['1 million', '5 million', '3 million', '2 million'],
+    correct: 2,
+    timer: 12
   }
 ];
 
 // ----------------------------------------------------------------------------
-// SET 2: Practical AI, GritinAI Ecosystem & Innovation
+// SET 2 (ROUND 2)
 // ----------------------------------------------------------------------------
 const SET2 = [
   {
     type: 'quiz',
-    label: 'What is GritinAI\'s dedicated live mentoring and learning platform called?',
-    subtitle: 'Connecting African tech talent with expert industry mentors',
-    options: ['Omnili', 'Ubá', 'Rapid', 'Coursera'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which keynote speaker presents "The Catalyst Effect: Harnessing AI for African Growth" at Connect 2.0?',
-    subtitle: 'Keynote spotlight on economic growth and entrepreneurship',
-    options: ['Mrs Mary Okonkwo', 'Mrs Olamide Efosa', 'Peter Nnachor', 'Favour Chima'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What does "LLM" stand for in modern AI engineering?',
-    subtitle: 'The class of neural networks behind ChatGPT, Claude, and Gemini',
-    options: ['Low Latency Matrix', 'Large Language Model', 'Linear Logic Module', 'Local Learning Memory'],
-    correct: 1,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'In neural networks, what mathematical operation combines inputs and synaptic weights?',
-    subtitle: 'The fundamental computation repeated millions of times per forward pass',
-    options: ['Dot Product (Matrix Multiplication)', 'Square Root', 'Fourier Inversion', 'Prime Factorization'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which speaker delivers the keynote "From Code to Career: Leveraging AI for Youth Employment"?',
-    subtitle: 'Focusing on workforce readiness for African graduates and developers',
-    options: ['Mrs Mary Okonkwo', 'Mrs Olamide Efosa', 'Mrs Ysika', 'Semfon Emmanuel'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What algorithm is universally used to calculate error gradients and update neural weights?',
-    subtitle: 'Popularized by Rumelhart, Hinton, and Williams in 1986',
-    options: ['QuickSort', 'Backpropagation', 'Dijkstra’s Algorithm', 'Binary Search'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which workshop track at Connect 2.0 is led by Peter Nnachor for hands-on building?',
-    subtitle: 'Demonstrating rapid AI prototyping and deployment',
-    options: ['Build with Rapid', 'Blockchain 101', 'Figma to Code', 'Quantum Circuits'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the phenomenon where a machine learning model memorizes training noise instead of generalizing?',
-    subtitle: 'High training accuracy but terrible real-world performance',
-    options: ['Underfitting', 'Quantization', 'Overfitting', 'Tokenization'],
-    correct: 2,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'Which university in Benin City collaborates with tech hubs and hosts the ADEC engineering centre?',
-    subtitle: 'Premier federal tertiary institution in Edo State',
-    options: ['University of Lagos (UNILAG)', 'University of Benin (UNIBEN)', 'Ahmadu Bello University (ABU)', 'University of Ibadan (UI)'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the name of the popular open-source platform known as the "GitHub of Machine Learning"?',
-    subtitle: 'Home to hundreds of thousands of open-source models and datasets',
-    options: ['Docker Hub', 'Hugging Face', 'Kaggle', 'npm'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What initiative at Connect 2.0 provides free AI consultations directly to business owners?',
-    subtitle: 'Helping small and medium enterprises automate operations',
-    options: ['MSME Clinic', 'Hackathon Arena', 'Executive VIP Lounge', 'Investor Round'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the primary function of "Tokens" in Large Language Models?',
-    subtitle: 'How models slice and read raw human text',
-    options: ['Crypto currency coins', 'Sub-word chunks of text converted to numerical IDs', 'Security passwords', 'Audio frequencies'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'GritinAI has reached how many students through educational initiatives and tech programs?',
-    subtitle: 'Demonstrating long-term grassroots educational impact across Nigeria',
-    options: ['500+', '2,000+', '10,000+', '1,000,000+'],
+    label: 'What is the name of GritinAI\'s live mentoring platform?',
+    subtitle: 'GritinAI\'s mentoring platform.',
+    options: ['Ubá', 'Rapid', 'Omnili', 'Omnify'],
     correct: 2,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which type of AI generation model works by progressively reversing added Gaussian noise?',
-    subtitle: 'The architecture behind Midjourney, Stable Diffusion, and Sora',
-    options: ['Diffusion Models', 'Recurrent Neural Networks', 'Decision Trees', 'Perceptrons'],
+    label: 'What does "API" stand for?',
+    subtitle: 'Lets two apps talk.',
+    options: [
+      'Automated Program Input',
+      'Application Programming Interface',
+      'Application Process Integration',
+      'Advanced Programming Index'
+    ],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Kuda, the Nigerian digital bank, is best known for offering what kind of service?',
+    subtitle: 'Nicknamed "the money app."',
+    options: [
+      'Digital-only micro-insurance',
+      'Peer-to-peer crypto trading',
+      'Mobile airtime reselling',
+      'Fully digital, branchless banking'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "IoT" stand for?',
+    subtitle: 'Smart fridges and watches.',
+    options: [
+      'Internet of Things',
+      'Internet of Technology',
+      'Interface of Transfer',
+      'Integrated Online Tools'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What open-source deep learning framework was originally created by Facebook’s FAIR team?',
-    subtitle: 'Currently the dominant framework for AI research worldwide',
-    options: ['PyTorch', 'TensorFlow', 'Caffe', 'Theano'],
+    label: 'Favour Chima leads which session at GritinAI Connect 2.0?',
+    subtitle: 'A founder-focused session.',
+    options: [
+      'MSME Clinic',
+      'Build with Rapid',
+      'Startup Pitch / Community Forum',
+      'AI for Governance Transformation'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What is "machine learning" in AI?',
+    subtitle: 'Behind Netflix recommendations.',
+    options: [
+      'Systems programmed with fixed, hardcoded rules only',
+      'A method for encrypting sensitive data',
+      'A type of computer processor',
+      'Systems that improve at tasks by learning from data'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "CBN" stand for, the body that regulates Nigerian fintechs?',
+    subtitle: 'Regulates the Naira.',
+    options: [
+      'Central Bank of Nigeria',
+      'Commercial Bank of Nigeria',
+      'Corporate Banking Network',
+      'Central Business Nigeria'
+    ],
     correct: 0,
-    timer: 10
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "SaaS" stand for?',
+    subtitle: 'How apps like Netflix are sold.',
+    options: [
+      'Service as a Software',
+      'Software as a Service',
+      'System as a Solution',
+      'Storage as a Service'
+    ],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'GritinAI Connect 2.0\'s "MSME Clinic" session offers attendees what?',
+    subtitle: 'A Connect 2.0 business session.',
+    options: [
+      'Free legal consultation for businesses',
+      'Free accounting software trial',
+      'Free AI consultation for businesses',
+      'Free co-working space access'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Which AI model architecture, introduced in a landmark 2017 paper, powers most modern chatbots?',
+    subtitle: 'From a 2017 research paper.',
+    options: ['Perceptron', 'Recurrent Network', 'Decision Tree', 'Transformer'],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Jumia, often called "Africa\'s Amazon," primarily operates in what space?',
+    subtitle: 'Called "Africa\'s Amazon."',
+    options: ['E-commerce', 'Ride-hailing', 'Food delivery only', 'Digital banking'],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "UX" stand for in tech and design?',
+    subtitle: 'About ease of use.',
+    options: [
+      'User Exchange',
+      'User Experience',
+      'Unified Experience',
+      'User Extension'
+    ],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'When does standard registration close for GritinAI Connect 2.0?',
+    subtitle: 'Later than early bird.',
+    options: [
+      'September 20, 2026',
+      'September 1, 2026',
+      'August 1, 2026',
+      'October 1, 2026'
+    ],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "CPU" stand for?',
+    subtitle: 'The computer\'s "brain."',
+    options: [
+      'Core Processing Utility',
+      'Central Program Unit',
+      'Central Processing Unit',
+      'Computer Processing Utility'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'How many sessions does GritinAI Connect 2.0 run across its single day?',
+    subtitle: 'Check the day\'s schedule.',
+    options: ['12', '18', '20', '15'],
+    correct: 3,
+    timer: 12
   }
 ];
 
 // ----------------------------------------------------------------------------
-// SET 3: African AI Transformation, Governance & Deep Tech
+// SET 3 (ROUND 3)
 // ----------------------------------------------------------------------------
 const SET3 = [
   {
     type: 'quiz',
-    label: 'Which public service training academy in Edo State partnered with GritinAI on digital transformation?',
-    subtitle: 'Known as JOOPSA in Benin City',
-    options: ['John Odigie-Oyegun Public Service Academy', 'Lagos Business School', 'National Institute for Policy', 'Administrative Staff College of Nigeria'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What does "NLP" stand for in computational computer science?',
-    subtitle: 'The branch of AI enabling machines to read, understand, and generate human languages',
-    options: ['Network Link Protocol', 'Natural Language Processing', 'Neural Linear Programming', 'Node Layer Parsing'],
-    correct: 1,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'Who moderates the high-impact panel session "Catalysing Africa’s Digital Economy" at Connect 2.0?',
-    subtitle: 'Guiding dialogue among leaders in policy, capital, and engineering',
-    options: ['Mrs Ysika', 'Peter Nnachor', 'Hope Omo', 'Favour Chima'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the name of the nationwide Nigerian federal initiative training 3 million tech talents?',
-    subtitle: 'Spearheaded by the Federal Ministry of Communications, Innovation & Digital Economy',
-    options: ['3MTT (3 Million Technical Talents)', 'N-Power Tech', 'Code Nigeria', 'Digital Pulse 2030'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'In transformer models, what mechanism computes mathematical relevance between every word in a sequence?',
-    subtitle: 'Enables transformers to process full paragraphs simultaneously unlike RNNs',
-    options: ['Self-Attention Mechanism', 'Convolutional Stride', 'Random Dropout', 'Batch Normalization'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which community event at Connect 2.0 gives rising African AI founders a spotlight to pitch?',
-    subtitle: 'Facilitated by Favour Chima on the afternoon stage',
-    options: ['Startup Pitch / Community Forum', 'Alumni Dinner', 'Gala Night', 'Code Sprint 100'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is "Fine-Tuning" in machine learning?',
-    subtitle: 'Adapting a pre-trained foundation model to a specific domain or task',
-    options: ['Cleaning hardware dust from server racks', 'Training a pre-existing model on a specialized dataset', 'Adjusting monitor screen brightness', 'Translating code from Python to C'],
+    label: 'What does "AR" stand for, as used in filters and try-on apps?',
+    subtitle: 'Used in Instagram filters.',
+    options: [
+      'Automated Rendering',
+      'Augmented Reality',
+      'Artificial Response',
+      'Advanced Recognition'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which prominent school in Edo State partnered with GritinAI to deploy school management automation?',
-    subtitle: 'Torch Bearers Academy transformed their administrative digital systems',
-    options: ['TBA World Academy (Torch Bearer)', 'Kings College', 'Corona Schools', 'Loyola Jesuit'],
-    correct: 0,
+    label: 'PiggyVest, one of Nigeria\'s earliest savings and investment apps, was founded in what year?',
+    subtitle: 'Started as "Piggybank.ng."',
+    options: ['2014', '2018', '2012', '2016'],
+    correct: 3,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is a "Vector Embedding" in modern machine learning systems?',
-    subtitle: 'How concepts and text are represented for semantic similarity searching',
-    options: ['A compressed image file', 'A dense numerical array representing semantic meaning in geometric space', 'An encrypted password hash', 'An HTML styling tag'],
+    label: 'GritinAI describes itself as building products for local businesses, government, and which other sector?',
+    subtitle: 'Listed beside "Government."',
+    options: ['Entertainment', 'Education', 'Agriculture', 'Real estate'],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is the name of the specialised tech community in Benin City partnering with GritinAI Connect?',
-    subtitle: 'Local chapter of Google Developer Groups',
-    options: ['GDG Benin', 'Lagos Java User Group', 'Nairobi PyCon', 'Abuja Cloud Club'],
+    label: 'What does "NLP" stand for in AI?',
+    subtitle: 'Lets machines read language.',
+    options: [
+      'Natural Language Processing',
+      'Neural Learning Process',
+      'Network Language Protocol',
+      'Natural Logic Programming'
+    ],
     correct: 0,
-    timer: 10
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which Silicon Valley chipmaker became the world’s most valuable company due to AI data center demand?',
-    subtitle: 'Makers of the H100, H200, and Blackwell B200 AI GPUs',
-    options: ['Intel', 'AMD', 'NVIDIA', 'Qualcomm'],
-    correct: 2,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'What does "Computer Vision" (CV) primarily enable computers to do?',
-    subtitle: 'Used in autonomous driving, facial recognition, and medical radiography',
-    options: ['Play audio files faster', 'Interpret and extract meaningful information from digital images and video', 'Boost internet connection bandwidth', 'Cool down CPU processors'],
-    correct: 1,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'How many key focus sectors does GritinAI Connect 2.0 emphasize for practical AI implementation?',
-    subtitle: 'Governance, Education, Healthcare, Agriculture, and MSME Development',
-    options: ['2', '3', '5', '12'],
+    label: 'Interswitch, one of Nigeria\'s earliest fintech infrastructure companies, was founded in what year?',
+    subtitle: 'Powers card/ATM transactions.',
+    options: ['2006', '1998', '2002', '2010'],
     correct: 2,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What term describes an AI system capable of understanding both text, images, and audio concurrently?',
-    subtitle: 'Found in frontier models like GPT-4o and Gemini 1.5 Pro',
-    options: ['Unimodal', 'Multimodal', 'Bicontinuous', 'Hyperbolic'],
-    correct: 1,
-    timer: 10
+    label: 'What insect is credited with giving us the computing term "bug," found in a 1947 computer relay?',
+    subtitle: 'A 1947 computing legend.',
+    options: ['Moth', 'Beetle', 'Ant', 'Cockroach'],
+    correct: 0,
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is the name of OpenAI\'s revolutionary text-to-video generation AI model?',
-    subtitle: 'Capable of generating photorealistic 60-second video scenes from text prompts',
-    options: ['Sora', 'DALL-E', 'Whisper', 'Codex'],
-    correct: 0,
-    timer: 10
+    label: 'What is a "chatbot" in simple terms?',
+    subtitle: 'Used for website support.',
+    options: [
+      'A device that charges your phone wirelessly',
+      'A tool that blocks spam emails',
+      'A robot that physically moves around an office',
+      'A program designed to simulate conversation with users'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Who is widely regarded as the world\'s first computer programmer, for her 1800s work with Charles Babbage?',
+    subtitle: 'Worked with Charles Babbage.',
+    options: ['Grace Hopper', 'Katherine Johnson', 'Ada Lovelace', 'Marie Curie'],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "OS" stand for, as in the software that runs a phone or computer?',
+    subtitle: 'Runs on every phone.',
+    options: ['Online Software', 'Operating System', 'Open Source', 'Output Sequence'],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'GritinAI Connect 2.0\'s early bird registration closes when?',
+    subtitle: 'Ends before the standard one.',
+    options: ['July 15, 2026', 'June 1, 2026', 'August 20, 2026', 'August 1, 2026'],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What is "cloud computing"?',
+    subtitle: 'Why Google Drive works anywhere.',
+    options: [
+      'A method of predicting weather using AI',
+      'Storing and running data/services over the internet instead of locally',
+      'A way of cooling down computer hardware',
+      'A type of wireless charging technology'
+    ],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'OPay, one of Nigeria\'s most-downloaded mobile money apps, launched in the Nigerian market in what year?',
+    subtitle: 'Backed by a browser maker.',
+    options: ['2016', '2020', '2018', '2014'],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'GritinAI Connect 1.0 (2025) was held in which month?',
+    subtitle: 'Same month as 2026\'s edition.',
+    options: ['June', 'November', 'September', 'March'],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "VPN" stand for?',
+    subtitle: 'For private browsing.',
+    options: [
+      'Verified Public Node',
+      'Virtual Protected Node',
+      'Variable Privacy Network',
+      'Virtual Private Network'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'ENIAC, one of the world\'s first electronic general-purpose computers, stands for what?',
+    subtitle: 'One of the earliest computers.',
+    options: [
+      'Electronic Numerical Integrator and Calculator',
+      'Electronic Numerical Integrator and Computer',
+      'Electric Network Integrated Automatic Computer',
+      'Enhanced Numeric Integrated Analog Computer'
+    ],
+    correct: 1,
+    timer: 12
   }
 ];
 
 // ----------------------------------------------------------------------------
-// SET 4: Engineering, Frontiers & Enterprise Intelligence
+// SET 4 (ROUND 4)
 // ----------------------------------------------------------------------------
 const SET4 = [
   {
     type: 'quiz',
-    label: 'What is the primary role of an "AI Agent" compared to a simple chatbot?',
-    subtitle: 'The shift from answering questions to autonomous execution',
-    options: ['It only talks in robotic accents', 'It can autonomously plan, use tools, call APIs, and execute complex workflows', 'It requires human manual approval for every syllable', 'It runs without electricity'],
+    label: 'What is a "blockchain"?',
+    subtitle: 'Behind Bitcoin.',
+    options: [
+      'A decentralized digital ledger that records transactions across many computers',
+      'A physical hard drive used for extra storage',
+      'A type of firewall software',
+      'A programming language for building apps'
+    ],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Which Nigerian telecom operator began commercial GSM service first, edging out MTN by about a day in August 2001?',
+    subtitle: 'Beat MTN by a day.',
+    options: ['MTN', 'Econet Wireless', '9mobile', 'Globacom'],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'GritinAI has served partner organizations across how many Nigerian states to date?',
-    subtitle: 'Demonstrating expanding regional and national footprint',
-    options: ['1', '3+', '36', '50'],
+    label: 'According to GritinAI\'s own numbers, how many Nigerian states has the company served so far?',
+    subtitle: 'On GritinAI\'s "Vision" page.',
+    options: ['20+', '10+', '3+', '36 (all states)'],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "encryption" do to data?',
+    subtitle: 'Keeps messages private.',
+    options: [
+      'Compresses it to save storage space',
+      'Deletes it permanently',
+      'Backs it up automatically to the cloud',
+      'Converts it into a coded form to prevent unauthorized access'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'NITDA, the Nigerian agency responsible for IT policy, stands for what?',
+    subtitle: 'Handles IT policy.',
+    options: [
+      'National Information Technology Development Agency',
+      'National IT & Digital Affairs',
+      'Nigeria Information Technology Directorate',
+      'Nigerian Internet & Telecoms Development Authority'
+    ],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "Wi-Fi" actually stand for?',
+    subtitle: 'Not quite what people assume.',
+    options: [
+      'Wireless Fidelity',
+      'Just a brand name, not an acronym',
+      'Wide Internet',
+      'Wireless Frequency'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What does "API" stand for in software and AI application integration?',
-    subtitle: 'The standard interface connecting frontend apps to AI models',
-    options: ['Application Programming Interface', 'Automated Program Identifier', 'Algorithmic Predictive Index', 'Active Processing Instruction'],
-    correct: 0,
-    timer: 10
+    label: 'In AI, what is a "neural network" loosely modeled after?',
+    subtitle: 'Modeled after the brain.',
+    options: [
+      'A computer\'s hard drive',
+      'An internet router',
+      'The human brain\'s neurons',
+      'A city\'s road network'
+    ],
+    correct: 2,
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which GritinAI web product domain connects developers directly to rapid prototyping tools?',
-    subtitle: 'Explore the dedicated app portal',
-    options: ['rapid.gritinai.com', 'ai.gritinai.com', 'prototype.africa', 'builder.io'],
+    label: 'Globacom, Nigeria\'s first indigenous GSM operator, introduced which first-of-its-kind billing system in 2003?',
+    subtitle: 'Ended the "full minute" charge.',
+    options: [
+      'Prepaid-only billing',
+      'Data-only billing',
+      'Flat-rate billing',
+      'Per-second billing'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Besides leading "Build with Rapid," what other Connect 2.0 session does Peter Nnachor lead?',
+    subtitle: 'His other Connect 2.0 session.',
+    options: [
+      'MSME Clinic',
+      'Startup Pitch',
+      'Workforce Readiness & Skills',
+      'AI for Governance Transformation'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is "Prompt Engineering" in the context of large language models?',
-    subtitle: 'Technique to elicit high-precision reasoning and structured outputs',
-    options: ['Building server motherboard hardware', 'Crafting structured inputs and context to guide model responses', 'Fixing Wi-Fi router connectivity', 'Writing raw binary machine code'],
+    label: 'What does "big data" refer to?',
+    subtitle: 'Too much for old tools to handle.',
+    options: [
+      'A large physical hard drive',
+      'Extremely large, complex datasets that traditional tools struggle to process',
+      'A type of computer virus',
+      'A programming language for spreadsheets'
+    ],
     correct: 1,
-    timer: 10
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which French AI research company created the open-weights Mistral 7B and Mixtral 8x7B models?',
-    subtitle: 'Founded by former researchers from Meta FAIR and DeepMind',
-    options: ['Mistral AI', 'Stability AI', 'Aleph Alpha', 'Cohere'],
+    label: 'Which of these is a real GritinAI partner organisation?',
+    subtitle: 'A real GritinAI partner.',
+    options: [
+      'Facebook Developer Circle Lagos',
+      'AWS User Group Abuja',
+      'GDG Benin',
+      'Microsoft Reactor Nigeria'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does the NCC, Nigeria\'s telecom regulator, stand for?',
+    subtitle: 'Regulates MTN, Airtel, etc.',
+    options: [
+      'National Cybersecurity Council',
+      'Nigeria Cloud Computing Corporation',
+      'National Connectivity Commission',
+      'Nigerian Communications Commission'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What time does Mrs Olamide Efosa\'s keynote begin at Connect 2.0?',
+    subtitle: 'Her keynote\'s start time.',
+    options: ['10:45 AM', '9:00 AM', '11:30 AM', '1:15 PM'],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is the full URL for GritinAI Connect 2.0 conference portal and registration?',
-    subtitle: 'Official conference platform for schedules, tickets, and pitch applications',
-    options: ['gritinaiconnect.gritinai.com', 'connect2026.com', 'ai-benin.ng', 'gritin.eventbrite.com'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What does "Weights & Biases" or parameters measure in an AI neural network?',
-    subtitle: 'Frontier models now possess hundreds of billions of them',
-    options: ['The physical weight of the server in kilograms', 'The tunable numeric values adjusted during model training', 'The number of employees at the AI company', 'The internet speed required'],
+    label: 'The "Turing Test," named after Alan Turing, checks whether a machine can do what?',
+    subtitle: 'About fooling a human.',
+    options: [
+      'Solve complex math equations faster than a human',
+      'Convincingly imitate human conversation',
+      'Beat a human at chess',
+      'Predict the weather accurately'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which Nigerian agricultural tech initiative partnered with GritinAI to deploy farmer support tools?',
-    subtitle: 'Featured in GritinAI client impact testimonials',
-    options: ['Cool Agrip Connect', 'FarmCrowdy', 'AgroMall', 'ThriveAgric'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is "Zero-Shot Learning" in artificial intelligence?',
-    subtitle: 'Showcasing deep generalization capabilities of foundation models',
-    options: ['A model performing a task without having seen any explicit training examples for it', 'A camera taking pictures without flash', 'Training an algorithm with zero computing power', 'A neural network that only outputs zero'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which company created the Claude family of foundation models, focusing on "Constitutional AI"?',
-    subtitle: 'Founded by former OpenAI research executives Dario and Daniela Amodei',
-    options: ['Anthropic', 'Cohere', 'Inflection AI', 'Character.ai'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the primary benefit of "Model Quantization" (e.g., converting FP16 to INT8 or INT4)?',
-    subtitle: 'Crucial for running AI locally on edge devices and smartphones',
-    options: ['Drastically reduces memory footprint and enables faster inference on consumer hardware', 'Makes the model generate longer poems', 'Changes the model language to French', 'Increases training costs tenfold'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the official brand color palette identity for GritinAI Connect 2.0?',
-    subtitle: 'Clean high-contrast digital look with electric cyan blue',
-    options: ['Pure Blue (#0088FF) on Solid Dark (#0E0E0C)', 'Neon Green on Purple', 'Bright Pink on Orange', 'Burgundy on Gold'],
-    correct: 0,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'What does "TPU" stand for in Google\'s cloud computing infrastructure?',
-    subtitle: 'Custom ASIC chips built specifically to accelerate TensorFlow and JAX',
-    options: ['Tensor Processing Unit', 'Thermal Power Unit', 'Transient Pixel Unit', 'Tera Parallel Unix'],
-    correct: 0,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'In reinforcement learning, what mathematical term balances trying new actions vs choosing known rewards?',
-    subtitle: 'Fundamental dilemma in agent decision-making',
-    options: ['Exploration vs. Exploitation', 'Overfitting vs. Underfitting', 'Precision vs. Recall', 'Encryption vs. Decryption'],
-    correct: 0,
+    label: 'Moniepoint, one of Nigeria\'s newest fintech "unicorns," started out under what name?',
+    subtitle: 'Started as a POS platform.',
+    options: ['Cellulant', 'Interswitch', 'TeamApt', 'Quickteller'],
+    correct: 2,
     timer: 12
   }
 ];
 
 // ----------------------------------------------------------------------------
-// SET 5: Future Horizons, Superintelligence & African Tech Leadership
+// SET 5 (ROUND 5)
 // ----------------------------------------------------------------------------
 const SET5 = [
   {
     type: 'quiz',
-    label: 'What does "AGI" represent as a long-term milestone in artificial intelligence research?',
-    subtitle: 'The theoretical threshold of human-level cognitive breadth',
-    options: ['Automated Graphics Interface', 'Artificial General Intelligence', 'Advanced Geometric Inference', 'Algorithmic Global Internet'],
-    correct: 1,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'What core mission guides GritinAI’s product development for local businesses?',
-    subtitle: 'Stated prominently in the GritinAI corporate vision',
-    options: ['Replacing local workforces with robots', 'Building practical AI tools that strengthen local ecosystems rather than replacing them', 'Selling cryptocurrency coins', 'Exclusively focusing on video games'],
-    correct: 1,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which prominent Nigerian global developer platform partnered with GritinAI to connect tech talent?',
-    subtitle: 'Co-founded by Elohor Thomas to assess and place African software engineers',
-    options: ['CodeLn', 'Andela', 'Decagon', 'TalentQL'],
+    label: 'GritinAI\'s "Rapid" product is designed to help users do what?',
+    subtitle: 'GritinAI\'s prototyping tool.',
+    options: [
+      'Quickly prototype AI-powered ideas',
+      'Track business inventory',
+      'Provide live mentorship sessions',
+      'Process loan applications'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What architectural innovation enables modern LLMs to process context windows exceeding 1 million tokens?',
-    subtitle: 'Used in Gemini 1.5 to analyze entire textbooks and video files in one prompt',
-    options: ['Sparse Attention / FlashAttention', 'Punch Card Readers', 'Floppy Disk Caching', 'Analog Vacuum Tubes'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'What is the official date of GritinAI Connect 2.0?',
-    subtitle: 'Marking the premier AI conference in South-South Nigeria',
-    options: ['September 26, 2026', 'December 25, 2026', 'January 1, 2027', 'July 4, 2026'],
-    correct: 0,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'What does "MoE" stand for in modern mega-scale neural network architecture?',
-    subtitle: 'The architectural design powering Mixtral 8x7B and GPT-4',
-    options: ['Mixture of Experts', 'Memory on Edge', 'Matrix of Equations', 'Module of Execution'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'Which GritinAI portal offers dedicated training courses in Tech and AI skills?',
-    subtitle: 'Upskilling the next generation of African engineers and data scientists',
-    options: ['training.gritinai.com', 'learn.ai', 'udemy.com', 'school.ng'],
-    correct: 0,
-    timer: 10
-  },
-  {
-    type: 'quiz',
-    label: 'Who won the Turing Award (the "Nobel Prize of Computing") for pioneer work on Deep Learning?',
-    subtitle: 'Known collectively as the "Godfathers of Deep Learning"',
-    options: ['Geoffrey Hinton, Yann LeCun, and Yoshua Bengio', 'Steve Jobs, Bill Gates, and Michael Dell', 'Tim Berners-Lee and Vint Cerf', 'Linus Torvalds and Ken Thompson'],
-    correct: 0,
-    timer: 12
-  },
-  {
-    type: 'quiz',
-    label: 'In AI alignment, what does "The Alignment Problem" refer to?',
-    subtitle: 'Ensuring advanced systems act in accordance with human values and safety',
-    options: ['Aligning monitors on a developer desk', 'Ensuring powerful AI systems pursue goals intended by humans without harmful side effects', 'Centering text in CSS', 'Aligning battery pins inside laptops'],
+    label: 'In what year was Apple Inc. founded?',
+    subtitle: 'Started in a garage.',
+    options: ['1974', '1976', '1980', '1969'],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'How many attendees are projected to attend GritinAI Connect 2.0 at the Victor Uwaifo Hub?',
-    subtitle: 'Scaling up from 1,000+ attendees at Connect 1.0',
-    options: ['50', '250', '1,500+', '50,000'],
+    label: 'Which Lagos district is popularly nicknamed "Yabacon Valley" for its cluster of tech startups?',
+    subtitle: 'Nigeria\'s answer to Silicon Valley.',
+    options: ['Ikeja', 'Lekki', 'Yaba', 'Surulere'],
     correct: 2,
-    timer: 10
+    timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is "Synthetic Data" in contemporary machine learning training pipelines?',
-    subtitle: 'Crucial for training when real-world human data is scarce or sensitive',
-    options: ['Fake accounts on social media', 'Data artificially generated by computer simulations or AI models to train other models', 'Hardware cables made of plastic', 'Counterfeit currency bills'],
+    label: 'What is "open source" software?',
+    subtitle: 'Think Linux.',
+    options: [
+      'Software that only works offline',
+      'Software available for free trial only',
+      'Software exclusively for government use',
+      'Software whose source code is publicly available to view, use, and modify'
+    ],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "NBC," Nigeria\'s broadcasting regulator, stand for?',
+    subtitle: 'Regulates TV and radio.',
+    options: [
+      'National Broadcasting Commission',
+      'Nigerian Business Council',
+      'National Bandwidth Commission',
+      'Nigeria Broadcast Corporation'
+    ],
+    correct: 0,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Can people who can\'t travel to Benin City still take part in Connect 2.0?',
+    subtitle: 'For those who can\'t travel.',
+    options: [
+      'No, in-person only, no exceptions',
+      'Yes, via a virtual pass with livestream access',
+      'Yes, but only a written recap is shared after',
+      'Yes, but only for sponsors'
+    ],
     correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What key innovation did "LoRA" (Low-Rank Adaptation) introduce to fine-tuning LLMs?',
-    subtitle: 'Reduced fine-tuning GPU memory requirements by over 80%',
-    options: ['Freezing pre-trained model weights and training small rank decomposition matrices', 'Deleting half the layers randomly', 'Replacing Python with Assembly', 'Running models purely on battery power'],
+    label: 'What is a "firewall" in computing?',
+    subtitle: 'Named after a real barrier.',
+    options: [
+      'A tool that speeds up your internet connection',
+      'A backup power supply for servers',
+      'A system that monitors and blocks unauthorized network access',
+      'A type of computer virus'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Cowrywise, a Nigerian savings and investment app, was founded in what year?',
+    subtitle: 'Rivals PiggyVest.',
+    options: ['2019', '2013', '2015', '2017'],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'GritinAI\'s "Vision" page states the company has reached how many students so far?',
+    subtitle: 'On GritinAI\'s "Vision" page.',
+    options: ['10k+', '5k+', '1k+', '50k+'],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'Which Edo State digital innovation agency collaborates closely with GritinAI programs?',
-    subtitle: 'Pioneering public digital literacy and innovation from Benin City',
-    options: ['Edo Digital Hub / Edo Innovates', 'Silicon Valley Africa', 'Kano ICT Park', 'Calabar Tech Valley'],
+    label: 'In what year was Amazon founded?',
+    subtitle: 'Started as a bookstore.',
+    options: ['1998', '1994', '1990', '2001'],
+    correct: 1,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What does "HTML" stand for?',
+    subtitle: 'Structures every web page.',
+    options: [
+      'High Tech Modern Language',
+      'Home Tool Markup Language',
+      'Hyper Text Markup Language',
+      'Hyperlink Text Manage Language'
+    ],
+    correct: 2,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'Which Nigerian regulator oversees capital markets and crypto exchanges, alongside the CBN?',
+    subtitle: 'Also watches crypto exchanges.',
+    options: ['NCC', 'NITDA', 'NAFDAC', 'SEC (Securities and Exchange Commission)'],
+    correct: 3,
+    timer: 12
+  },
+  {
+    type: 'quiz',
+    label: 'What happens if you cancel your Connect 2.0 ticket within 7 days of the event?',
+    subtitle: 'Closer to the event, less flexible.',
+    options: [
+      'Non-refundable but transferable',
+      '50% refund or credit',
+      'Full refund',
+      'No cancellation allowed at all'
+    ],
     correct: 0,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What benchmark evaluates an LLM\'s capability to write working software and pass test cases?',
-    subtitle: 'Created by OpenAI to evaluate Codex and code generation models',
-    options: ['HumanEval', 'SpeedTest', 'Geekbench', 'PassMark'],
-    correct: 0,
+    label: 'The world\'s first-ever text message, sent in 1992, is said to have simply read what?',
+    subtitle: 'Sent in 1992.',
+    options: ['"Hello World"', '"Merry Christmas"', '"Happy Birthday"', '"Good Morning"'],
+    correct: 1,
     timer: 12
   },
   {
     type: 'quiz',
-    label: 'What is the slogan and call to action echoed across GritinAI Connect 2.0?',
-    subtitle: 'Encouraging every attendee to take the leap from theory into implementation',
-    options: ['From Awareness to Action', 'Just Wait and See', 'Code in Silence', 'Theory Over Practice'],
-    correct: 0,
-    timer: 10
+    label: 'What is "phishing" in cybersecurity?',
+    subtitle: 'A play on "fishing."',
+    options: [
+      'A method of speeding up file downloads',
+      'A type of computer cooling system',
+      'A scam that tricks people into revealing sensitive information',
+      'A technique for compressing videos'
+    ],
+    correct: 2,
+    timer: 12
   }
 ];
 
