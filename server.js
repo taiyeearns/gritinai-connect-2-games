@@ -145,7 +145,7 @@ function publicSessionPayload(isPrivileged = false) {
       mediaType: round.mediaType || (round.image ? 'image' : 'text'),
       category: round.category || 'Challenge',
       label: round.label || round.prompt,
-      subtitle: round.subtitle || '',
+      subtitle: round.subtitle || round.caption || '',
       snippet: round.snippet || '',
       image: round.image || null,
       options: round.options,

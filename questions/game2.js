@@ -45,15 +45,15 @@ const SET1 = [
   },
   {
     type: 'quiz',
-    label: 'Keynote speaker Mrs Olamide Efosa\'s talk, "The Catalyst Effect," focuses on what?',
-    subtitle: 'Her keynote talk title.',
+    label: 'Why did Twitter originally set its tweet limit to exactly 140 characters?',
+    subtitle: 'A design choice inherited from mobile telecom history.',
     options: [
-      'Building government AI policy frameworks',
-      'AI ethics and responsible data use',
-      'AI applications in healthcare diagnostics',
-      'Harnessing AI for African economic growth and entrepreneurship'
+      'Early mobile keyboards could only cache 140 bytes',
+      'It fit inside a 160-character SMS with room for the username',
+      'It matched the average reading speed of 140 words per minute',
+      'It was based on Japanese telegraph cable limits'
     ],
-    correct: 3,
+    correct: 1,
     timer: 12
   },
   {
@@ -108,13 +108,13 @@ const SET1 = [
   },
   {
     type: 'quiz',
-    label: 'Peter Nnachor leads which workshop track at GritinAI Connect 2.0?',
-    subtitle: 'A hands-on session track.',
+    label: 'What was the very first video ever uploaded to YouTube in April 2005?',
+    subtitle: 'An 18-second clip uploaded by co-founder Jawed Karim.',
     options: [
-      'Build with Ubá',
-      'Build with Rapid',
-      'Build with Omnili',
-      'MSME Clinic'
+      'Charlie bit my finger',
+      'Me at the zoo',
+      'Hello World',
+      'First test broadcast'
     ],
     correct: 1,
     timer: 12
@@ -142,13 +142,13 @@ const SET1 = [
   },
   {
     type: 'quiz',
-    label: 'Mrs Ysika moderates which panel session at GritinAI Connect 2.0?',
-    subtitle: 'A panel discussion topic.',
+    label: 'In web browsing, what does the HTTP "404" status code mean?',
+    subtitle: 'One of the most famous error codes in internet history.',
     options: [
-      'Catalysing Africa\'s Digital Economy',
-      'AI for Governance Transformation',
-      'Workforce Readiness & Skills',
-      'Sustainable AI Integration'
+      'Server Not Found (Page Missing)',
+      'Access Denied / Forbidden',
+      'Database Connection Timeout',
+      'Invalid SSL Certificate'
     ],
     correct: 0,
     timer: 12
@@ -229,13 +229,13 @@ const SET2 = [
   },
   {
     type: 'quiz',
-    label: 'Favour Chima leads which session at GritinAI Connect 2.0?',
-    subtitle: 'A founder-focused session.',
+    label: 'The original Sony PlayStation was initially developed as a CD-ROM add-on for which console?',
+    subtitle: 'A famous partnership breakup that changed gaming history.',
     options: [
-      'MSME Clinic',
-      'Build with Rapid',
-      'Startup Pitch / Community Forum',
-      'AI for Governance Transformation'
+      'Sega Genesis',
+      'Atari 2600',
+      'Super Nintendo (SNES)',
+      'Commodore 64'
     ],
     correct: 2,
     timer: 12
@@ -613,13 +613,13 @@ const SET4 = [
   },
   {
     type: 'quiz',
-    label: 'Besides leading "Build with Rapid," what other Connect 2.0 session does Peter Nnachor lead?',
-    subtitle: 'His other Connect 2.0 session.',
+    label: 'Which animal is the famous official mascot of the Linux operating system?',
+    subtitle: 'Created by Larry Ewing in 1996 and named "Tux".',
     options: [
-      'MSME Clinic',
-      'Startup Pitch',
-      'Workforce Readiness & Skills',
-      'AI for Governance Transformation'
+      'A Penguin',
+      'A Chameleon',
+      'A Red Panda',
+      'A Dolphin'
     ],
     correct: 0,
     timer: 12
@@ -665,9 +665,14 @@ const SET4 = [
   },
   {
     type: 'quiz',
-    label: 'What time does Mrs Olamide Efosa\'s keynote begin at Connect 2.0?',
-    subtitle: 'Her keynote\'s start time.',
-    options: ['10:45 AM', '9:00 AM', '11:30 AM', '1:15 PM'],
+    label: 'Why was the computer "mouse" given the name "mouse" when invented in 1964?',
+    subtitle: 'Invented by computer pioneer Douglas Engelbart.',
+    options: [
+      'Because the cord coming out of the back looked like a tail',
+      'Because it made quiet clicking sounds like a mouse',
+      'It was an acronym for "Manual Optical User System Entry"',
+      'Because the wooden casing was shaped like mouse ears'
+    ],
     correct: 0,
     timer: 12
   },

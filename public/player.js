@@ -451,8 +451,10 @@ function renderRound(round) {
 
   if (round.image) {
     mediaContainer.classList.remove('hidden');
+    mediaContainer.classList.add('has-image');
     mediaContainer.innerHTML = `<img class="round-image-el" src="${round.image}" alt="Round visual" />`;
   } else if (round.snippet) {
+    mediaContainer.classList.remove('has-image');
     mediaContainer.classList.remove('hidden');
     if (round.mediaType === 'code') {
       mediaContainer.innerHTML = `<pre class="code-media-box"><code>${escapeHtml(round.snippet)}</code></pre>`;
